@@ -1,0 +1,39 @@
+@layer components {
+  .fw-kpi {
+    padding: 18px 20px;
+    background: var(--surface-1);
+    border: var(--hairline);
+    border-radius: var(--radius-lg);
+  }
+  .fw-kpi-value {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.1;
+    margin-top: 8px;
+  }
+  .fw-kpi-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .fw-kpi-delta.is-gain { color: var(--gain); }
+  .fw-kpi-delta.is-loss { color: var(--loss); }
+  .fw-kpi-delta-label {
+    color: var(--fg-3);
+    margin-left: 4px;
+    font-weight: 400;
+  }
+  .fw-kpi-spark {
+    margin-top: 10px;
+  }
+  [data-density="compact"] .fw-kpi {
+    padding: 12px 14px;
+  }
+  [data-density="compact"] .fw-kpi-value {
+    font-size: 22px;
+  }
+}
