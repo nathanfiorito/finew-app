@@ -14,8 +14,9 @@ describe("<CategoryPill>", () => {
     const { container } = render(
       <CategoryPill label="x" color="var(--series-3)" />,
     );
-    const dot = container.querySelector(".fw-pill-dot") as HTMLElement;
-    expect(dot.style.background).toBe("var(--series-3)");
+    const dot = container.querySelector<HTMLElement>(".fw-pill-dot");
+    expect(dot).not.toBeNull();
+    expect(dot?.style.background).toBe("var(--series-3)");
   });
 
   it("forwards refs", () => {

@@ -17,7 +17,7 @@ export interface SkeletonProps extends HTMLAttributes<HTMLSpanElement> {
 
 function toLength(v: number | string | undefined): string | undefined {
   if (v === undefined) return undefined;
-  return typeof v === "number" ? `${v}px` : v;
+  return typeof v === "number" ? `${String(v)}px` : v;
 }
 
 function SkeletonImpl(
