@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Iconography</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px; border: var(--hairline); border-radius: var(--radius-md); background: var(--surface-1); }
+  .cell svg { color: var(--fg-1); }
+  .cell .name { font: 500 10px/1.1 var(--font-sans); color: var(--fg-3); }
+  h3 { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 8px 0; }
+  .meta { margin-top: 12px; font: 400 11px/1.5 var(--font-sans); color: var(--fg-2); }
+</style>
+</head>
+<body>
+  <h3>Lucide · 1.75px stroke · 24px grid</h3>
+  <div class="grid">
+    <!-- Inlined Lucide SVGs (MIT) -->
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 7 8l4 4 4-4 4 4 2-2"/><path d="M21 14v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6"/></svg><div class="name">trending-up</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="name">credit-card</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg><div class="name">home</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><div class="name">search</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="name">clock</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><div class="name">plus</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg><div class="name">trash</div></div>
+    <div class="cell"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9 1.65 1.65 0 0 0 4.27 7.18l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><div class="name">settings</div></div>
+  </div>
+  <div class="meta">Lucide is MIT-licensed. Production: <code>lucide-react</code>. Mocks: inline SVG or CDN <code>https://unpkg.com/lucide@latest</code>.</div>
+</body>
+</html>

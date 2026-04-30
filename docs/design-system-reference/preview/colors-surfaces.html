@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors — Surfaces & Foreground</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .swatch { border: var(--hairline); border-radius: var(--radius-md); overflow: hidden; }
+  .chip { height: 64px; }
+  .meta { padding: 8px 10px; background: var(--surface-1); }
+  .name { font: 600 12px/1.2 var(--font-sans); color: var(--fg-1); }
+  .hex  { font: 400 11px/1.4 var(--font-mono); color: var(--fg-3); margin-top: 2px; letter-spacing: 0.02em; }
+  h3 { font: 600 11px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 10px 0; }
+  .group { margin-bottom: 16px; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <h3>Surfaces — warm neutrals</h3>
+    <div class="row">
+      <div class="swatch"><div class="chip" style="background: #FAF8F4"></div><div class="meta"><div class="name">bg / surface-0</div><div class="hex">#FAF8F4</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #F3EFE8"></div><div class="meta"><div class="name">surface-1</div><div class="hex">#F3EFE8</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #ECE7DD"></div><div class="meta"><div class="name">surface-2</div><div class="hex">#ECE7DD</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #E2DCCF"></div><div class="meta"><div class="name">surface-3</div><div class="hex">#E2DCCF</div></div></div>
+    </div>
+  </div>
+  <div class="group">
+    <h3>Foreground — graphite, never #000</h3>
+    <div class="row">
+      <div class="swatch"><div class="chip" style="background: #1F1B16"></div><div class="meta"><div class="name">fg-1</div><div class="hex">#1F1B16</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #4A453D"></div><div class="meta"><div class="name">fg-2</div><div class="hex">#4A453D</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #807A6F"></div><div class="meta"><div class="name">fg-3</div><div class="hex">#807A6F</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #B5AEA1"></div><div class="meta"><div class="name">fg-4</div><div class="hex">#B5AEA1</div></div></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KPI & Sparkline</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .kpi { padding: 16px; background: var(--surface-1); border: var(--hairline); border-radius: var(--radius-lg); }
+  .micro { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); }
+  .value { font-family: var(--font-serif); font-weight: 500; font-size: 26px; line-height: 1.1; margin-top: 8px; font-variant-numeric: tabular-nums lining-nums; }
+  .currency { font-size: 13px; color: var(--fg-3); margin-right: 4px; vertical-align: 0.18em; }
+  .delta { font-size: 12px; margin-top: 6px; font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 4px; }
+  .gain { color: var(--gain); }
+  .loss { color: var(--loss); }
+  .spark { margin-top: 10px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="kpi">
+      <div class="micro">Patrimônio</div>
+      <div class="value"><span class="currency">R$</span>184.290</div>
+      <div class="delta gain">▲ +1,18% · 30 d</div>
+      <svg class="spark" width="100%" height="32" viewBox="0 0 200 32" preserveAspectRatio="none">
+        <path d="M0,24 L20,22 L40,18 L60,20 L80,14 L100,16 L120,10 L140,12 L160,8 L180,6 L200,4" fill="none" stroke="#3F5E4A" stroke-width="1.5" />
+        <path d="M0,24 L20,22 L40,18 L60,20 L80,14 L100,16 L120,10 L140,12 L160,8 L180,6 L200,4 L200,32 L0,32 Z" fill="#3F5E4A" opacity="0.08" />
+      </svg>
+    </div>
+    <div class="kpi">
+      <div class="micro">Despesas — abril</div>
+      <div class="value"><span class="currency">R$</span>6.842</div>
+      <div class="delta loss">▲ +4,2% vs. março</div>
+      <svg class="spark" width="100%" height="32" viewBox="0 0 200 32" preserveAspectRatio="none">
+        <path d="M0,18 L20,20 L40,14 L60,22 L80,16 L100,12 L120,18 L140,10 L160,14 L180,8 L200,6" fill="none" stroke="#7A2E2E" stroke-width="1.5" />
+      </svg>
+    </div>
+    <div class="kpi">
+      <div class="micro">Reserva de emergência</div>
+      <div class="value">4,2 meses</div>
+      <div class="delta gain">Cobertura ideal: 6 meses</div>
+      <div style="margin-top: 12px; height: 6px; background: var(--surface-3); border-radius: 999px; overflow: hidden;">
+        <div style="width: 70%; height: 100%; background: var(--accent); border-radius: 999px;"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Badges & Category Pills</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); font-family: var(--font-sans); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  h3 { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 8px 0; }
+  .badge { font: 600 11px/1 var(--font-sans); padding: 4px 8px; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 4px; }
+  .b-neutral { background: var(--surface-2); color: var(--fg-2); }
+  .b-accent  { background: var(--accent-soft); color: var(--accent-press); }
+  .b-gain    { background: var(--gain-soft); color: var(--gain); }
+  .b-loss    { background: var(--loss-soft); color: var(--loss); }
+  .b-warn    { background: var(--warn-soft); color: var(--warn); }
+  .b-info    { background: var(--info-soft); color: var(--info); }
+
+  .pill { font: 500 12px/1 var(--font-sans); padding: 6px 10px 6px 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; background: var(--surface-1); border: 1px solid var(--border-1); color: var(--fg-1); }
+  .pill .dot { width: 8px; height: 8px; border-radius: 2px; }
+</style>
+</head>
+<body>
+  <h3>Status badges</h3>
+  <div class="row">
+    <span class="badge b-neutral">Pendente</span>
+    <span class="badge b-accent">Conciliado</span>
+    <span class="badge b-gain">▲ +2,4%</span>
+    <span class="badge b-loss">▼ −1,8%</span>
+    <span class="badge b-warn">Atrasado</span>
+    <span class="badge b-info">Agendado</span>
+  </div>
+  <h3>Category pills</h3>
+  <div class="row">
+    <span class="pill"><span class="dot" style="background: #3F5E4A"></span>Mercado</span>
+    <span class="pill"><span class="dot" style="background: #2F5F66"></span>Transporte</span>
+    <span class="pill"><span class="dot" style="background: #7A2E2E"></span>Restaurantes</span>
+    <span class="pill"><span class="dot" style="background: #B08A2E"></span>Assinaturas</span>
+    <span class="pill"><span class="dot" style="background: #B0623E"></span>Saúde</span>
+    <span class="pill"><span class="dot" style="background: #7A6B8E"></span>Lazer</span>
+    <span class="pill"><span class="dot" style="background: #3D5A7A"></span>Educação</span>
+    <span class="pill"><span class="dot" style="background: #6B7A3D"></span>Moradia</span>
+  </div>
+</body>
+</html>
