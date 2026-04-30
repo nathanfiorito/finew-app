@@ -2,16 +2,30 @@
 
 **Date:** 2026-04-30
 **Status:** Draft — pending user review
-**Scope:** Decompose the integration of the Claude Design output (currently in `./design_system/`, untracked) into independent waves, each producing working, testable software on its own. This document does **not** define implementation tasks; each wave will get its own spec + plan when its turn comes.
+**Scope:** Decompose the integration of the Claude Design output (committed under `docs/design-system-reference/`) into independent waves, each producing working, testable software on its own. This document does **not** define implementation tasks; each wave will get its own spec + plan when its turn comes.
+
+## 0. Decisions resolved during review
+
+The user resolved the cross-cutting decisions before any wave plan is written:
+
+| Decision                                                | Choice                                                                |
+| ------------------------------------------------------- | --------------------------------------------------------------------- |
+| Token prefix (`--finew-*` vs unprefixed)                | **Drop the prefix.** Tokens become `--bg`, `--accent`, etc.           |
+| Style strategy for primitives (Wave 2 — Options A/B/C)  | **Option C** — per-primitive CSS files inside `@layer components`.    |
+| Radix UI adoption (Waves 4 and 5)                       | **Adopt Radix** for non-trivial interactions.                         |
+| Where `docs/design-system-reference/` lives             | **Vendored** under `docs/design-system-reference/` (already done).    |
+| `Finew v2.0.zip` archive                                | **Gitignored** (already done).                                        |
+
+The "Open decisions" subsections in each wave below now list only the decisions still open for that wave's own spec.
 
 ## 1. Why decompose
 
 The Claude Design output is substantial:
 
-- **`design_system/colors_and_type.css`** — full token set (light + dark + density override), ready to migrate.
-- **`design_system/ui_kits/finew-pwa/kit.css`** — vanilla CSS classes (`fw-*`) covering buttons, cards, KPI, tabs, table, transaction rows, sidebar, mobile shell, sheets, forms.
-- **`design_system/ui_kits/finew-pwa/Components.jsx`** — React 18 vanilla (no TypeScript) using `fw-*` classes, covering Money, Sparkline, Button, CategoryPill, KPIStat, Card, TransactionRow, plus inline Lucide icons.
-- **HTML previews** (`design_system/preview/*.html`) — token demos useful as Storybook seeds later.
+- **`docs/design-system-reference/colors_and_type.css`** — full token set (light + dark + density override), ready to migrate.
+- **`docs/design-system-reference/ui_kits/finew-pwa/kit.css`** — vanilla CSS classes (`fw-*`) covering buttons, cards, KPI, tabs, table, transaction rows, sidebar, mobile shell, sheets, forms.
+- **`docs/design-system-reference/ui_kits/finew-pwa/Components.jsx`** — React 18 vanilla (no TypeScript) using `fw-*` classes, covering Money, Sparkline, Button, CategoryPill, KPIStat, Card, TransactionRow, plus inline Lucide icons.
+- **HTML previews** (`docs/design-system-reference/preview/*.html`) — token demos useful as Storybook seeds later.
 - **Full PWA mockup** — high-fidelity reference, not production code.
 
 Two facts make a single mega-plan unworkable:
@@ -59,8 +73,8 @@ Waves 2–5 can run in parallel after Wave 1 lands. Wave 6 reuses primitives fro
 
 **Deliverables:**
 
-- **Tokens.** Replace `src/shared/ui/styles/tokens.css` (currently ~50 lines of placeholders) with the full token set from `design_system/colors_and_type.css` — surfaces, fg, borders, accent, semantic, 8 series, typography scale, spacing scale, radii, shadows, motion, layout. Both light (canonical, `:root` and `[data-theme="light"]`) and dark (`[data-theme="dark"]`) themes. Density override on `[data-density="compact"]`.
-- **`@theme` re-export.** Keep the existing skeleton pattern: raw `--finew-*` (or in our case `--*`) custom properties on `:root`, plus a Tailwind v4 `@theme` block that re-exports the subset we want as utilities (`bg-*`, `text-*`, `rounded-*`, `gap-*`, etc.). Decision in Wave 1: do we keep the `--finew-*` prefix from the skeleton, or drop it (Claude Design's output uses unprefixed `--bg`, `--accent`, etc.)? Recommendation: drop the prefix, since Tailwind v4 already namespaces via `@theme` and the prefix added noise.
+- **Tokens.** Replace `src/shared/ui/styles/tokens.css` (currently ~50 lines of placeholders) with the full token set from `docs/design-system-reference/colors_and_type.css` — surfaces, fg, borders, accent, semantic, 8 series, typography scale, spacing scale, radii, shadows, motion, layout. Both light (canonical, `:root` and `[data-theme="light"]`) and dark (`[data-theme="dark"]`) themes. Density override on `[data-density="compact"]`.
+- **`@theme` re-export.** Keep the existing skeleton pattern: raw unprefixed custom properties on `:root` (per §0), plus a Tailwind v4 `@theme` block that re-exports the subset we want as utilities (`bg-*`, `text-*`, `rounded-*`, `gap-*`, etc.).
 - **Semantic type classes.** Port `.t-display`, `.t-h1`…`.t-h4`, `.t-body`, `.t-body-strong`, `.t-body-sm`, `.t-caption`, `.t-micro`, `.t-money`, `.t-money-display` into `src/shared/ui/styles/typography.css` (new file) and import from `globals.css`. These remain plain CSS classes (not Tailwind utilities) because they are semantic, not atomic.
 - **Fonts (self-hosted).** Install Source Serif 4 (variable, OFL) and Inter (variable, OFL) under `public/fonts/`. Define `@font-face` rules in `src/shared/ui/styles/fonts.css` using `font-display: swap` and a single variable axis per family. **Reject** the Google Fonts CDN `@import` from the output — it breaks offline PWA and adds a third-party request.
 - **Icons.** Install `lucide-react`. Add a thin `<Icon>` re-export in `src/shared/ui/primitives/Icon/` that fixes `strokeWidth={1.75}` and exports the curated set from the kit (home, list, pie, card, target, search, bell, plus, menu, user, arrowUp, arrowDown, chevR/L/D, close, filter, calendar, cog, wallet). New icons added by reference, not by drawing.
@@ -72,10 +86,9 @@ Waves 2–5 can run in parallel after Wave 1 lands. Wave 6 reuses primitives fro
 
 **Open decisions to settle in the Wave 1 spec:**
 
-1. Drop `--finew-*` prefix? (Recommendation: yes.)
-2. Keep semantic `.t-*` classes as plain CSS, or migrate to Tailwind `@layer components`? (Recommendation: plain CSS in `typography.css`. Easier to reason about.)
-3. Where does the `@font-face` and the semantic typography import live in the cascade order? Order matters for FOUT/FOIT.
-4. Density scoping: app-wide via `<html>` only, or also a `<DensityScope density="compact">` wrapper component for cards/tables that locally override? (Recommendation: ship the global toggle now; add the wrapper in Wave 2 if the first ported card needs it.)
+1. Keep semantic `.t-*` classes as plain CSS, or migrate to Tailwind `@layer components`? (Recommendation: plain CSS in `typography.css`. Easier to reason about.)
+2. Where do the `@font-face` and the semantic typography imports live in the cascade order? Order matters for FOUT/FOIT.
+3. Density scoping: app-wide via `<html>` only, or also a `<DensityScope density="compact">` wrapper component for cards/tables that locally override? (Recommendation: ship the global toggle now; add the wrapper in Wave 2 if the first ported card needs it.)
 
 ## 4. Wave 2 — Basic primitives (port from kit)
 
@@ -85,13 +98,7 @@ Waves 2–5 can run in parallel after Wave 1 lands. Wave 6 reuses primitives fro
 
 Of these, **Button, Card, CategoryPill, Avatar** exist in the kit. **Badge, Skeleton, EmptyState, Breadcrumb, Pagination** are referenced but unbuilt — they need to be created in this wave following the kit's vocabulary.
 
-**Style strategy decision (must be settled in Wave 2 spec):** how do `.fw-btn`, `.fw-card`, etc., live in the codebase?
-
-- **Option A — Tailwind utilities inside JSX.** Convert each `fw-*` class into Tailwind utility chains. Pros: idiomatic for the chosen stack. Cons: bloats JSX, hides the visual contract, breaks Claude Design parity.
-- **Option B — Plain CSS, co-located per primitive.** Each primitive gets `Button.tsx` + `Button.css`, imported as a side-effect import. Pros: round-trip with Claude Design output, small JSX. Cons: introduces non-Tailwind styling.
-- **Option C — Tailwind `@layer components`.** Keep the `.fw-btn` selector exactly, defined inside `@layer components { ... }` in a single `components.css`. Pros: zero JSX bloat, parity with output, Tailwind-native. Cons: one big stylesheet to maintain.
-
-Recommendation: **C**, with one caveat — split into per-primitive files (`Button.css`) imported by the primitive, all of them under `@layer components` so cascade is predictable. This gives us co-location *and* Tailwind-native layering.
+**Style strategy (resolved in §0):** **Option C — per-primitive CSS files inside `@layer components`.** Each primitive gets `Button.tsx` + `Button.css`, where `Button.css` wraps its rules in `@layer components { .fw-btn { … } }`. Co-located with the component for grep-ability; layered so Tailwind utilities can override or compose without specificity wars; round-trips with the Claude Design kit because the `.fw-*` selectors are preserved verbatim.
 
 **FSD compliance:** every primitive is presentational (no API, no stores, no domain). Located at `src/shared/ui/primitives/<Name>/`. Exports `<Name>` and `<Name>Props` via `index.ts`. Goes in the `src/shared/ui/primitives/index.ts` barrel.
 
@@ -99,9 +106,8 @@ Recommendation: **C**, with one caveat — split into per-primitive files (`Butt
 
 **Open decisions for Wave 2:**
 
-1. Style strategy (above).
-2. Class-name convention: keep `fw-*` prefix or drop? (Recommendation: keep — it's the visual contract, easy to grep, and aligns with the Claude Design skill output.)
-3. Forwarded refs and `asChild` (Radix-style) on Button — yes from day one or YAGNI? (Recommendation: forward refs always; defer `asChild` until first need.)
+1. Class-name convention: keep `fw-*` prefix or drop? (Recommendation: keep — it's the visual contract, easy to grep, and aligns with the Claude Design skill output.)
+2. Forwarded refs and `asChild` (Radix-style) on Button — yes from day one or YAGNI? (Recommendation: forward refs always; defer `asChild` until first need.)
 
 ## 5. Wave 3 — Finance-aware primitives (port)
 
@@ -134,16 +140,15 @@ Wave 3 is the smallest wave by line count and the highest by leverage — it's t
 - Restyling Radix with our tokens is mechanical (Radix is unstyled by design).
 - The cost is a runtime dependency (`@radix-ui/react-*`, ~10kB per primitive after tree-shake) and a slightly different mental model.
 
-**Recommendation: adopt Radix UI for every primitive that has a non-trivial interaction model** (Select, Checkbox, Radio, Switch). For Input and DateRangePicker:
+**Resolved in §0: adopt Radix UI** for every primitive that has a non-trivial interaction model (Select, Checkbox, Radio, Switch). For Input and DateRangePicker:
 
 - Input is a styled `<input>` — no Radix needed.
 - DateRangePicker: use **react-day-picker** (pt-BR locale built in, headless, ~4kB) as the calendar; wrap with our trigger + popover. Don't build a calendar.
 
 **Open decisions for Wave 4:**
 
-1. Radix vs custom (above).
-2. Form integration: react-hook-form, formik, or no form library? (Recommendation: react-hook-form, but the primitive itself should be agnostic and accept the `register()` spread.)
-3. Validation message slot: built into each primitive, or rendered by the form layer? (Recommendation: each primitive accepts `error?: string` and renders it; the form layer feeds it.)
+1. Form integration: react-hook-form, formik, or no form library? (Recommendation: react-hook-form, but the primitive itself should be agnostic and accept the `register()` spread.)
+2. Validation message slot: built into each primitive, or rendered by the form layer? (Recommendation: each primitive accepts `error?: string` and renders it; the form layer feeds it.)
 
 ## 7. Wave 5 — Overlay & composition primitives (build)
 
@@ -181,20 +186,18 @@ Wave 3 is the smallest wave by line count and the highest by leverage — it's t
 
 ## 9. What about the full UI kit (`ui_kits/finew-pwa/`)?
 
-The mockup screens (Overview, Transactions, Budgets, Cards, Goals) are **reference material, not source code**. They live in `design_system/ui_kits/finew-pwa/` (untracked) and inform the page-level work that comes after the DS is in place — specifically the `pages/` and `widgets/` layers, which are out of scope for the DS itself.
+The mockup screens (Overview, Transactions, Budgets, Cards, Goals) are **reference material, not source code**. They live in `docs/design-system-reference/ui_kits/finew-pwa/` and inform the page-level work that comes after the DS is in place — specifically the `pages/` and `widgets/` layers, which are out of scope for the DS itself.
 
 When we get to the Transactions page (a future spec, post-DS), the kit's `Screens.jsx` becomes a reference for layout, copy, and density behavior — but the page will compose Wave 2/3/6 primitives, not copy the kit's JSX directly.
 
-## 10. Open questions that affect every wave
+## 10. Open questions that still affect every wave
 
-- **Where does `./design_system/` live in the repo?** Three options: (a) leave untracked locally; (b) commit verbatim under `docs/design-system-reference/` so contributors can browse without re-running Claude Design; (c) keep only the source-of-truth files (`colors_and_type.css`, `Components.jsx`) tracked, drop the rest. Recommendation: (b), because it's small (≤200KB), self-contained, and removes ambiguity for reviewers.
-- **`Finew v2.0.zip`** in the repo root: should be moved out or `.gitignore`d. It's the original Claude Design archive; not source.
 - **Storybook (or Ladle / Histoire):** explicit non-goal of every wave 1–6, but worth a future spec once Wave 2 ships ≥3 primitives.
 
 ## 11. Risk register
 
 - **Token rename churn.** Dropping the `--finew-*` prefix in Wave 1 cascades into every later wave. Doing it now is cheap; doing it after Wave 3 is painful. Decide once.
-- **Claude Design parity drift.** The longer we go without re-running Claude Design, the more our primitives diverge from its kit. Mitigate: when adding a new primitive, also add a card to `design_system/preview/` so the next Claude Design run sees it.
+- **Claude Design parity drift.** The longer we go without re-running Claude Design, the more our primitives diverge from its kit. Mitigate: when adding a new primitive, also add a card to `docs/design-system-reference/preview/` so the next Claude Design run sees it.
 - **Radix lock-in.** Adopting Radix in Wave 4 means accepting it forever (or paying to remove). The decision is reasonable but should be stated explicitly in the Wave 4 spec, not absorbed silently.
 - **Dark mode regressions.** The kit's dark token values are hand-tuned; any token rename or Tailwind `@theme` translation could silently break a contrast pair. Token contract test in Wave 1 must include both themes.
 - **Font licensing in production.** Source Serif 4 and Inter are OFL — fine. If marketing later wants a third face, this constraint must be remembered.
