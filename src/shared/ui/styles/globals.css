@@ -1,0 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: var(--finew-font-sans);
+  background: var(--finew-color-bg);
+  color: var(--finew-color-fg);
+}
