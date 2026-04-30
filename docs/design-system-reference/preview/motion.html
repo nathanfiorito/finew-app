@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Motion</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); font-family: var(--font-sans); }
+  .row { display: grid; grid-template-columns: 90px 1fr 90px; gap: 14px; align-items: center; padding: 10px 0; border-bottom: var(--hairline); }
+  .name { font: 600 12px/1.2 var(--font-sans); }
+  .desc { font: 400 12px/1.4 var(--font-sans); color: var(--fg-2); }
+  .meta { font: 400 11px/1.3 var(--font-mono); color: var(--fg-3); text-align: right; }
+  h3 { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 6px 0; }
+  .ease { height: 28px; background: var(--surface-2); border-radius: 4px; overflow: hidden; position: relative; }
+  .ease .ball { position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; animation: slide 1.6s var(--ease-standard) infinite alternate; }
+  @keyframes slide { to { left: calc(100% - 24px); } }
+</style>
+</head>
+<body>
+  <h3>Motion · 150–200ms · standard ease</h3>
+  <div class="row"><div class="name">duration-1</div><div class="desc">State feedback (hover, focus)</div><div class="meta">150 ms</div></div>
+  <div class="row"><div class="name">duration-2</div><div class="desc">Default transition (defaults)</div><div class="meta">200 ms</div></div>
+  <div class="row"><div class="name">duration-3</div><div class="desc">Sheet / modal entrance</div><div class="meta">240 ms</div></div>
+  <div class="row" style="grid-template-columns: 90px 1fr"><div class="name">ease-standard</div><div class="ease"><div class="ball"></div></div></div>
+  <div style="margin-top: 10px; font: 400 11px/1.5 var(--font-sans); color: var(--fg-3);">No spring physics. No bounces. Press states use <code>translateY(1px)</code>, never scale-down. Honors <code>prefers-reduced-motion</code>.</div>
+</body>
+</html>

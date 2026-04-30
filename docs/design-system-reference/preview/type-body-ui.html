@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type — Body & UI</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); }
+  .row { display: grid; grid-template-columns: 80px 1fr 90px; gap: 14px; align-items: baseline; padding: 10px 0; border-bottom: var(--hairline); }
+  .row:last-child { border-bottom: 0; }
+  .label { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); }
+  .meta  { font: 400 11px/1.3 var(--font-mono); color: var(--fg-3); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="row"><div class="label">Body</div><div class="t-body">Sua reserva de emergência cobre 4,2 meses de despesas.</div><div class="meta">Inter 15 / 400</div></div>
+  <div class="row"><div class="label">Body strong</div><div class="t-body-strong">Sua reserva de emergência cobre 4,2 meses de despesas.</div><div class="meta">Inter 15 / 600</div></div>
+  <div class="row"><div class="label">Body sm</div><div class="t-body-sm">Atualizado há 3 minutos a partir do extrato bancário.</div><div class="meta">Inter 13 / 400</div></div>
+  <div class="row"><div class="label">Caption</div><div class="t-caption">Comparado a abril de 2025</div><div class="meta">Inter 12 / 400</div></div>
+  <div class="row"><div class="label">Micro</div><div class="t-micro">Despesas — abril</div><div class="meta">Inter 11 / 600 • +0.06em</div></div>
+</body>
+</html>

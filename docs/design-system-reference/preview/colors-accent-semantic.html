@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors — Accent & Semantic</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .swatch { border: var(--hairline); border-radius: var(--radius-md); overflow: hidden; }
+  .chip { height: 64px; display: flex; align-items: flex-end; padding: 8px 10px; color: #FAF8F4; font: 500 11px/1.2 var(--font-sans); }
+  .chip.dark-text { color: #1F1B16; }
+  .meta { padding: 8px 10px; background: var(--surface-1); }
+  .name { font: 600 12px/1.2 var(--font-sans); }
+  .hex  { font: 400 11px/1.4 var(--font-mono); color: var(--fg-3); margin-top: 2px; letter-spacing: 0.02em; }
+  h3 { font: 600 11px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 10px 0; }
+  .group { margin-bottom: 16px; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <h3>Accent — moss</h3>
+    <div class="row">
+      <div class="swatch"><div class="chip" style="background: #3F5E4A">accent</div><div class="meta"><div class="name">accent</div><div class="hex">#3F5E4A</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #344F3E">hover</div><div class="meta"><div class="name">accent-hover</div><div class="hex">#344F3E</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #2A4233">press</div><div class="meta"><div class="name">accent-press</div><div class="hex">#2A4233</div></div></div>
+      <div class="swatch"><div class="chip dark-text" style="background: #E5ECDF">soft</div><div class="meta"><div class="name">accent-soft</div><div class="hex">#E5ECDF</div></div></div>
+    </div>
+  </div>
+  <div class="group">
+    <h3>Semantic — gain / loss / warn / info</h3>
+    <div class="row">
+      <div class="swatch"><div class="chip" style="background: #3F5E4A">+ gain</div><div class="meta"><div class="name">gain (moss)</div><div class="hex">#3F5E4A</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #7A2E2E">− loss</div><div class="meta"><div class="name">loss (bordeaux)</div><div class="hex">#7A2E2E</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #8A6A1F">! warn</div><div class="meta"><div class="name">warn (mustard)</div><div class="hex">#8A6A1F</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #3D5A7A">i info</div><div class="meta"><div class="name">info (slate-blue)</div><div class="hex">#3D5A7A</div></div></div>
+    </div>
+  </div>
+</body>
+</html>

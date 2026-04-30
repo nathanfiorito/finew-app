@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors — Categorical Series</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .swatch { border: var(--hairline); border-radius: var(--radius-md); overflow: hidden; }
+  .chip { height: 56px; }
+  .meta { padding: 6px 10px; background: var(--surface-1); }
+  .name { font: 600 11px/1.2 var(--font-sans); }
+  .hex  { font: 400 10px/1.3 var(--font-mono); color: var(--fg-3); margin-top: 2px; }
+  h3 { font: 600 11px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 10px 0; }
+  .preview { margin-top: 14px; padding: 16px; border: var(--hairline); border-radius: var(--radius-lg); background: var(--surface-1); }
+  .bars { display: flex; gap: 4px; align-items: flex-end; height: 60px; }
+  .bar { flex: 1; border-radius: 2px 2px 0 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 10px; font: 400 11px/1.2 var(--font-sans); color: var(--fg-2); }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+</style>
+</head>
+<body>
+  <h3>Series — 8 hues, desaturated to coexist</h3>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background: #3F5E4A"></div><div class="meta"><div class="name">moss</div><div class="hex">--series-1</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #2F5F66"></div><div class="meta"><div class="name">teal-petrol</div><div class="hex">--series-2</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #7A2E2E"></div><div class="meta"><div class="name">bordeaux</div><div class="hex">--series-3</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #B08A2E"></div><div class="meta"><div class="name">mustard</div><div class="hex">--series-4</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #B0623E"></div><div class="meta"><div class="name">terracotta</div><div class="hex">--series-5</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #7A6B8E"></div><div class="meta"><div class="name">lavender</div><div class="hex">--series-6</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #3D5A7A"></div><div class="meta"><div class="name">slate-blue</div><div class="hex">--series-7</div></div></div>
+    <div class="swatch"><div class="chip" style="background: #6B7A3D"></div><div class="meta"><div class="name">olive</div><div class="hex">--series-8</div></div></div>
+  </div>
+</body>
+</html>
