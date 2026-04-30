@@ -31,7 +31,7 @@ CI (`.github/workflows/ci.yml`) runs `lint`, `typecheck`, `test`, `build` on eve
 - push to `feature/*` → auto-PR to `develop`
 - push to `develop` (after merge) → auto-PR to `main`
 
-**Merge strategy is squash-only** (enforced by the rulesets). Conventional Commits is a manual convention applied to PR titles — there is no automated commitlint enforcement; edit the PR title before squash-merging if the source commit subject is not in `<type>(<scope>): <subject>` form.
+**Merge strategy depends on the direction:** `feature → develop` is **squash-only** (each PR becomes a single semantic commit on `develop`); `develop → main` is **merge-commit-only** (`main` inherits `develop`'s SHAs and the two branches share history, eliminating the squash-divergence that previously caused `develop → main` PRs to conflict on duplicate content). Both rules are enforced by the rulesets. See `docs/superpowers/specs/2026-04-29-guardrails-design.md` §4.4. Conventional Commits is a manual convention applied to PR titles — there is no automated commitlint enforcement; edit the PR title before squash-merging if the source commit subject is not in `<type>(<scope>): <subject>` form.
 
 When merging the `develop → main` PR, do **not** delete the branch (`develop` is long-lived).
 
