@@ -18,3 +18,4 @@ export * from "./Tabs/index.js";
 export * from "./Accordion/index.js";
 export * from "./Tooltip/index.js";
 export * from "./Popover/index.js";
+export * from "./Drawer/index.js";
