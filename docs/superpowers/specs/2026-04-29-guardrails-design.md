@@ -237,7 +237,7 @@ PRs criados via `GITHUB_TOKEN` não disparam workflows aninhados. Aceitável aqu
 
 ### Passo 1 — Tooling local
 
-Commit em `main` com todos os arquivos da seção 3 (exceto rulesets, que são apenas referência versionada).
+Commit em `main` com todos os arquivos da arquitetura (seção 3), incluindo os JSONs de ruleset — eles são versionados como fonte da verdade auditável e serão aplicados na API no Passo 3.
 
 ```
 chore: bootstrap guardrails (CI, rulesets, tooling)
