@@ -11,6 +11,7 @@ export * from "./Pagination/index.js";
 export * from "./Money/index.js";
 export * from "./Sparkline/index.js";
 export * from "./KPIStat/index.js";
+export * from "./Table/index.js";
 export * from "./Input/index.js";
 export * from "./Select/index.js";
 export * from "./Checkbox/index.js";
