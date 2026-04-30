@@ -1,8 +1,10 @@
 # Guardrails mínimos — Design
 
 **Data:** 2026-04-29
-**Repo:** `nathanfiorito/finew-app` (privado, ADMIN)
+**Repo:** `nathanfiorito/finew-app` (público, ADMIN)
 **Stack alvo:** Node.js 24.15.0 + npm + TypeScript
+
+> **Nota de visibilidade:** o repositório foi tornado público durante o bootstrap porque GitHub Rulesets em repositórios privados requer GitHub Pro/Team. Alternativa não escolhida: upgrade para GitHub Pro.
 
 ## 1. Objetivo
 
@@ -66,10 +68,10 @@ Dois rulesets idênticos em estrutura, um por branch protegida.
       "parameters": {
         "strict_required_status_checks_policy": true,
         "required_status_checks": [
-          { "context": "ci / lint" },
-          { "context": "ci / typecheck" },
-          { "context": "ci / test" },
-          { "context": "ci / build" }
+          { "context": "lint" },
+          { "context": "typecheck" },
+          { "context": "test" },
+          { "context": "build" }
         ]
       }
     }
@@ -118,8 +120,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: "24.15.0", cache: "npm" }
       - run: npm ci
       - run: npm run lint
@@ -127,8 +129,8 @@ jobs:
   typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: "24.15.0", cache: "npm" }
       - run: npm ci
       - run: npm run typecheck
@@ -136,8 +138,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: "24.15.0", cache: "npm" }
       - run: npm ci
       - run: npm test -- --run
@@ -145,8 +147,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: "24.15.0", cache: "npm" }
       - run: npm ci
       - run: npm run build
@@ -159,7 +161,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - id: target
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
@@ -185,8 +187,22 @@ jobs:
 
 PRs criados via `GITHUB_TOKEN` não disparam workflows aninhados. Aceitável aqui porque:
 
-- Os checks `ci / lint`, `ci / typecheck`, `ci / test`, `ci / build` rodaram no `push` e ficam atrelados ao SHA do commit. O PR exibe os mesmos checks (mesmo SHA), satisfazendo o ruleset.
+- Os checks `lint`, `typecheck`, `test`, `build` rodaram no `push` e ficam atrelados ao SHA do commit. O PR exibe os mesmos checks (mesmo SHA), satisfazendo o ruleset.
 - Não há outros workflows que precisem rodar exclusivamente em `pull_request`.
+
+### 5.4 Pré-condição obrigatória nas configurações do repo
+
+`GITHUB_TOKEN` consegue criar PRs apenas se a opção **"Allow GitHub Actions to create and approve pull requests"** estiver habilitada em *Settings → Actions → General → Workflow permissions*. Por padrão vem desligada.
+
+Habilitar via API (uma vez):
+
+```bash
+gh api -X PUT /repos/nathanfiorito/finew-app/actions/permissions/workflow \
+  -F default_workflow_permissions=read \
+  -F can_approve_pull_request_reviews=true
+```
+
+Sem isso, o job `open-pr` falha com `GraphQL: GitHub Actions is not permitted to create or approve pull requests`.
 
 ## 6. Tooling local
 
@@ -250,9 +266,17 @@ git switch -c develop
 git push -u origin develop
 ```
 
-O push aciona o CI em `develop`, registrando os contextos de check (`ci / lint`, etc.) na API do GitHub.
+O push aciona o CI em `develop`, registrando os contextos de check (`lint`, `typecheck`, `test`, `build`) na API do GitHub.
 
-### Passo 3 — Aplicar rulesets
+### Passo 3 — Habilitar criação de PRs por GitHub Actions
+
+```bash
+gh api -X PUT /repos/nathanfiorito/finew-app/actions/permissions/workflow \
+  -F default_workflow_permissions=read \
+  -F can_approve_pull_request_reviews=true
+```
+
+### Passo 4 — Aplicar rulesets
 
 ```bash
 gh api -X POST /repos/nathanfiorito/finew-app/rulesets \
@@ -262,7 +286,7 @@ gh api -X POST /repos/nathanfiorito/finew-app/rulesets \
   --input .github/rulesets/develop.json
 ```
 
-### Passo 4 — Validar (smoke test)
+### Passo 5 — Validar (smoke test)
 
 1. `git push origin main` direto → deve ser rejeitado.
 2. Criar `feature/test-guardrail`, fazer push → CI roda → auto-PR `feature/test-guardrail → develop` é aberto.
