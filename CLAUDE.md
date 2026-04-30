@@ -39,14 +39,14 @@ When merging the `develop → main` PR, do **not** delete the branch (`develop` 
 
 The frontend is organized in six layers. Dependencies flow downward only — a layer may import from any layer **below** it, never sideways or upward.
 
-| Layer        | Purpose                              | May import from                                   |
-|--------------|--------------------------------------|---------------------------------------------------|
-| `app/`       | composition, router, providers       | pages, widgets, features, entities, shared       |
-| `pages/`     | routes; compose widgets/features     | widgets, features, entities, shared              |
-| `widgets/`   | composite reusable blocks            | features, entities, shared                        |
-| `features/`  | functional units (slices)            | entities, shared (NOT other features)             |
-| `entities/`  | domain models                        | shared                                            |
-| `shared/`    | generic building blocks (DS lives here) | shared only                                    |
+| Layer       | Purpose                                 | May import from                            |
+| ----------- | --------------------------------------- | ------------------------------------------ |
+| `app/`      | composition, router, providers          | pages, widgets, features, entities, shared |
+| `pages/`    | routes; compose widgets/features        | widgets, features, entities, shared        |
+| `widgets/`  | composite reusable blocks               | features, entities, shared                 |
+| `features/` | functional units (slices)               | entities, shared (NOT other features)      |
+| `entities/` | domain models                           | shared                                     |
+| `shared/`   | generic building blocks (DS lives here) | shared only                                |
 
 Each layer has its own `CLAUDE.md` describing its rules and conventions:
 
@@ -72,7 +72,7 @@ Architectural boundaries are enforced by **two** layers (do not bypass either):
 These are not in code but the design assumes them. Don't break them without updating `docs/superpowers/specs/2026-04-29-guardrails-design.md`:
 
 - Repository visibility is **public** (Rulesets require GitHub Pro on private repos).
-- *Settings → Actions → General → Workflow permissions*: "Allow GitHub Actions to create and approve pull requests" must be enabled (see spec §5.4). Without it, the `open-pr` job fails.
+- _Settings → Actions → General → Workflow permissions_: "Allow GitHub Actions to create and approve pull requests" must be enabled (see spec §5.4). Without it, the `open-pr` job fails.
 - `main` is the default branch; `feature/*` must be branched from `develop`.
 
 ## Documentation conventions

@@ -17,6 +17,7 @@
 ## File map
 
 **Created:**
+
 - `index.html` — Vite entry HTML
 - `vite.config.ts` — Vite config (React plugin + PWA plugin)
 - `tailwind.config.ts` — Tailwind config consuming CSS vars
@@ -44,6 +45,7 @@
 - `src/shared/types/{CLAUDE.md,.gitkeep}`
 
 **Modified:**
+
 - `package.json` — deps + scripts
 - `tsconfig.json` — JSX, types, parser project
 - `tsconfig.build.json` — exclude tests
@@ -51,6 +53,7 @@
 - `CLAUDE.md` (root) — add Architecture section indexing per-layer files
 
 **Deleted:**
+
 - `src/index.ts`, `src/index.test.ts`
 
 ---
@@ -58,6 +61,7 @@
 ## Task 1: Install runtime dependencies and Vite/React scaffolding
 
 **Files:**
+
 - Modify: `package.json`
 
 - [ ] **Step 1: Add runtime + dev dependencies**
@@ -120,6 +124,7 @@ git commit -m "chore: add Vite 8 + React 19.2 + DS skeleton dev/runtime deps"
 ## Task 2: Bootstrap Vite entry (`index.html`, `main.tsx`, minimal `App.tsx`)
 
 **Files:**
+
 - Create: `index.html`
 - Create: `vite.config.ts`
 - Create: `src/main.tsx`
@@ -203,6 +208,7 @@ git commit -m "feat: scaffold Vite + React entry"
 ## Task 3: Replace old skeleton files
 
 **Files:**
+
 - Delete: `src/index.ts`, `src/index.test.ts`
 - Modify: `tsconfig.build.json`
 
@@ -246,6 +252,7 @@ git commit -m "chore: remove placeholder src/index.ts and update build tsconfig"
 ## Task 4: Add React Router 7 with Home + NotFound routes
 
 **Files:**
+
 - Create: `src/app/router.tsx`
 - Create: `src/pages/home/HomePage.tsx`
 - Create: `src/pages/not-found/NotFoundPage.tsx`
@@ -316,6 +323,7 @@ git commit -m "feat: wire React Router 7 with Home and NotFound routes"
 ## Task 5: Smoke test for App routing
 
 **Files:**
+
 - Create: `src/app/App.test.tsx`
 - Modify: `vite.config.ts` (add Vitest config)
 
@@ -396,6 +404,7 @@ git commit -m "test: add App routing smoke tests"
 ## Task 6: Tailwind + CSS variables tokens scaffolding
 
 **Files:**
+
 - Create: `tailwind.config.ts`
 - Create: `postcss.config.js`
 - Create: `src/shared/ui/styles/tokens.css`
@@ -536,6 +545,7 @@ git commit -m "feat: wire Tailwind with CSS-variable tokens"
 ## Task 7: TanStack Query + Theme providers and shared API client
 
 **Files:**
+
 - Create: `src/app/providers/QueryProvider.tsx`
 - Create: `src/app/providers/ThemeProvider.tsx`
 - Create: `src/shared/api/client.ts`
@@ -643,6 +653,7 @@ git commit -m "feat: add Query and Theme providers and shared fetch client"
 ## Task 8: PWA via vite-plugin-pwa
 
 **Files:**
+
 - Modify: `vite.config.ts`
 - Create: `public/icons/.gitkeep`
 
@@ -705,6 +716,7 @@ git commit -m "feat: enable PWA via vite-plugin-pwa"
 ## Task 9: Create FSD layer directories with `.gitkeep`
 
 **Files:**
+
 - Create: `src/widgets/.gitkeep`
 - Create: `src/features/.gitkeep`
 - Create: `src/entities/.gitkeep`
@@ -736,6 +748,7 @@ git commit -m "chore: scaffold empty FSD layer directories"
 ## Task 10: Per-directory `CLAUDE.md` files (Progressive Disclosure)
 
 **Files:**
+
 - Create: `src/app/CLAUDE.md`
 - Create: `src/pages/CLAUDE.md`
 - Create: `src/widgets/CLAUDE.md`
@@ -759,6 +772,7 @@ git commit -m "chore: scaffold empty FSD layer directories"
 **Imported by:** only `src/main.tsx`.
 
 **Conventions:**
+
 - One `App.tsx` exporting `App`.
 - Provider components in `providers/` are React components named `<XProvider>`.
 - Global stylesheet entry: `styles/index.css` (imported by `main.tsx`).
@@ -776,6 +790,7 @@ git commit -m "chore: scaffold empty FSD layer directories"
 **Must NOT import from:** `app`, other `pages`.
 
 **Conventions:**
+
 - Folder per page, e.g. `home/HomePage.tsx`.
 - Default export is forbidden — export the named component (`export function HomePage`).
 - Page components return `JSX.Element` and take no props (data comes from loaders or hooks).
@@ -792,6 +807,7 @@ git commit -m "chore: scaffold empty FSD layer directories"
 **Must NOT import from:** `app`, `pages`, other `widgets`.
 
 **Conventions:**
+
 - One folder per widget. Public surface via `index.ts` barrel.
 - A widget is allowed to know about multiple features; a feature must not.
 ```
@@ -808,11 +824,13 @@ git commit -m "chore: scaffold empty FSD layer directories"
 
 **Slice layout:**
 ```
+
 features/<feature>/
-  ui/        # React components
-  model/     # Zustand stores, selectors, custom hooks
-  api/       # data-fetching (uses shared/api/client)
-  index.ts   # barrel — only this file is part of the public surface
+ui/ # React components
+model/ # Zustand stores, selectors, custom hooks
+api/ # data-fetching (uses shared/api/client)
+index.ts # barrel — only this file is part of the public surface
+
 ```
 **Conventions:**
 - Cross-feature composition belongs in `widgets/` or `pages/`, never inside another feature.
@@ -830,6 +848,7 @@ features/<feature>/
 **Must NOT import from:** `app`, `pages`, `widgets`, `features`, other entities.
 
 **Conventions:**
+
 - One folder per entity. Public surface via `index.ts`.
 - No HTTP calls here — those belong in features or shared/api.
 ```
@@ -845,13 +864,15 @@ features/<feature>/
 **Imported by:** every other layer.
 
 **Subfolders:**
-- `ui/`       — design-system surface (tokens, primitives, styles)
-- `api/`      — HTTP client and shared request types
-- `lib/`      — pure helpers (formatting, classnames, date utils)
-- `config/`   — environment, feature flags, constants
-- `types/`    — cross-cutting TypeScript types
+
+- `ui/` — design-system surface (tokens, primitives, styles)
+- `api/` — HTTP client and shared request types
+- `lib/` — pure helpers (formatting, classnames, date utils)
+- `config/` — environment, feature flags, constants
+- `types/` — cross-cutting TypeScript types
 
 **Conventions:**
+
 - Nothing here may know about a feature or entity. If it does, move it.
 ```
 
@@ -863,6 +884,7 @@ features/<feature>/
 **Purpose:** the place the future Design System plugs into. Today it hosts CSS-variable tokens, global styles, and an empty `primitives/` folder for reusable UI components (Button, Input, etc.).
 
 **Conventions:**
+
 - Tokens are CSS custom properties in `styles/tokens.css`. Tailwind reads them via `tailwind.config.ts`.
 - Theme switching: `[data-theme="dark"]` on `<html>` is owned by `app/providers/ThemeProvider.tsx`.
 - Primitives must be presentational — no domain knowledge, no API calls, no Zustand stores.
@@ -877,6 +899,7 @@ features/<feature>/
 **Purpose:** thin, typed `fetch` wrapper used by features. Base URL via `import.meta.env.VITE_API_URL`.
 
 **Conventions:**
+
 - One generic `request<T>` function. Auth, retries, interceptors are added here when needed — never duplicated across features.
 - Do not import feature/entity types here; this layer is domain-agnostic.
 ```
@@ -889,6 +912,7 @@ features/<feature>/
 **Purpose:** small, pure utilities (e.g., `cn` for classnames, money/date formatters). No React state, no DOM access, no network.
 
 **Conventions:**
+
 - Each helper lives in its own file and is exported by name.
 - Side-effect-free; trivially unit-testable.
 ```
@@ -901,6 +925,7 @@ features/<feature>/
 **Purpose:** central place for env-derived values and project-wide constants. Read `import.meta.env` here, validate, and export typed values.
 
 **Conventions:**
+
 - No conditional logic depending on the environment elsewhere — read the typed config from this folder.
 ```
 
@@ -912,6 +937,7 @@ features/<feature>/
 **Purpose:** types reused across multiple layers that don't belong to any single entity (e.g., `Result<T, E>`, branded primitives).
 
 **Conventions:**
+
 - Types only — no runtime code.
 ```
 
@@ -927,6 +953,7 @@ git commit -m "docs: add per-layer CLAUDE.md (Progressive Disclosure)"
 ## Task 11: Update root `CLAUDE.md` with Architecture index
 
 **Files:**
+
 - Modify: `CLAUDE.md` (root)
 
 - [ ] **Step 1: Append a new "Architecture" section** to the root `CLAUDE.md`, just below the existing "Branching and merging" section. Insert verbatim:
@@ -936,14 +963,14 @@ git commit -m "docs: add per-layer CLAUDE.md (Progressive Disclosure)"
 
 The frontend is organized in six layers. Dependencies flow downward only — a layer may import from any layer **below** it, never sideways or upward.
 
-| Layer        | Purpose                              | May import from                                   |
-|--------------|--------------------------------------|---------------------------------------------------|
-| `app/`       | composition, router, providers       | pages, widgets, features, entities, shared       |
-| `pages/`     | routes; compose widgets/features     | widgets, features, entities, shared              |
-| `widgets/`   | composite reusable blocks            | features, entities, shared                        |
-| `features/`  | functional units (slices)            | entities, shared (NOT other features)             |
-| `entities/`  | domain models                        | shared                                            |
-| `shared/`    | generic building blocks (DS lives here) | shared only                                    |
+| Layer       | Purpose                                 | May import from                            |
+| ----------- | --------------------------------------- | ------------------------------------------ |
+| `app/`      | composition, router, providers          | pages, widgets, features, entities, shared |
+| `pages/`    | routes; compose widgets/features        | widgets, features, entities, shared        |
+| `widgets/`  | composite reusable blocks               | features, entities, shared                 |
+| `features/` | functional units (slices)               | entities, shared (NOT other features)      |
+| `entities/` | domain models                           | shared                                     |
+| `shared/`   | generic building blocks (DS lives here) | shared only                                |
 
 Each layer has its own `CLAUDE.md` describing its rules and conventions:
 
@@ -977,6 +1004,7 @@ git commit -m "docs: add Architecture index to root CLAUDE.md"
 ## Task 12: ESLint flat config — type-aware preset, React, hooks, a11y, typing rigor
 
 **Files:**
+
 - Modify: `eslint.config.js`
 
 - [ ] **Step 1: Replace `eslint.config.js` contents**
@@ -1060,6 +1088,7 @@ git commit -m "feat(lint): type-aware ESLint with React, hooks, a11y, and typing
 ## Task 13: Add `eslint-plugin-boundaries` rules (Layer A enforcement)
 
 **Files:**
+
 - Modify: `eslint.config.js`
 
 - [ ] **Step 1: Add the boundaries plugin to the existing config block**
@@ -1130,6 +1159,7 @@ git commit -m "feat(lint): enforce FSD layer boundaries via eslint-plugin-bounda
 ## Task 14: dependency-cruiser config + architectural test (Layer B enforcement)
 
 **Files:**
+
 - Create: `.dependency-cruiser.cjs`
 - Create: `src/architecture.test.ts`
 
@@ -1207,15 +1237,15 @@ const allowedFromTo: Record<string, ReadonlyArray<string>> = {
 
 const layerOf = (modulePath: string): string | null => {
   const match = /^src\/(app|pages|widgets|features|entities|shared)\b/.exec(modulePath);
-  return match ? match[1] ?? null : null;
+  return match ? (match[1] ?? null) : null;
 };
 
 describe("Architecture boundaries", (): void => {
   it("respects FSD layer dependencies and has no cycles", async (): Promise<void> => {
-    const result: IReporterOutput = await cruise(
-      ["src"],
-      { tsConfig: { fileName: "tsconfig.json" }, tsPreCompilationDeps: true },
-    );
+    const result: IReporterOutput = await cruise(["src"], {
+      tsConfig: { fileName: "tsconfig.json" },
+      tsPreCompilationDeps: true,
+    });
     const output = typeof result.output === "string" ? JSON.parse(result.output) : result.output;
 
     const violations: string[] = [];
@@ -1244,7 +1274,9 @@ describe("Architecture boundaries", (): void => {
         if (toLayer === null) continue;
         const allowed = allowedFromTo[fromLayer] ?? [];
         if (!allowed.includes(toLayer)) {
-          violations.push(`layer: ${mod.source} (${fromLayer}) → ${dep.resolved} (${toLayer}) is forbidden`);
+          violations.push(
+            `layer: ${mod.source} (${fromLayer}) → ${dep.resolved} (${toLayer}) is forbidden`,
+          );
         }
       }
     }
@@ -1292,6 +1324,7 @@ git commit -m "test(arch): enforce FSD boundaries via dependency-cruiser in Vite
 ## Task 15: Prettier and final acceptance run
 
 **Files:**
+
 - Create: `.prettierrc`
 - Create: `.prettierignore`
 
@@ -1399,6 +1432,7 @@ Ensure the PR title matches Conventional Commits, e.g.: `feat: bootstrap FSD fro
 ## Self-review notes
 
 Spec coverage check:
+
 - §2 stack — Tasks 1, 2, 4, 6, 7, 8 ✓
 - §3 directory layout — Tasks 2, 4, 6, 7, 9 ✓
 - §3.1 layer rules — Tasks 13, 14 ✓

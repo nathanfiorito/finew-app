@@ -6,5 +6,6 @@
 **Must NOT import from:** `app`, `pages`, other `widgets`.
 
 **Conventions:**
+
 - One folder per widget. Public surface via `index.ts` barrel.
 - A widget is allowed to know about multiple features; a feature must not.

@@ -20,19 +20,19 @@ Out of scope for this wave: authentication, real design tokens / DS components, 
 
 ## 2. Stack decisions
 
-| Concern | Choice | Rationale |
-|---|---|---|
-| Build tool | **Vite 8.0.10** | Fastest DX for SPA; first-class PWA via `vite-plugin-pwa`. |
-| UI library | **React 19.2** | Latest stable; matches React Router 7 expectations. |
-| Routing | **React Router 7** (library mode) | Use `createBrowserRouter` with optional loaders; no framework mode (we are not using Remix-style server data here). |
-| PWA | **vite-plugin-pwa** (Workbox) | Standard PWA pipeline: manifest, service worker, icons. |
-| Styling | **Tailwind CSS** + **CSS variables** | Tokens live as CSS vars under `src/shared/ui/styles/tokens.css`; Tailwind consumes them via `theme.extend`. Theme switching via `[data-theme="dark"]`. The future DS only needs to populate token values. |
-| Server state | **@tanstack/react-query** | Cache, fetch, invalidation. Provider in `src/app/providers/`. |
-| Client state | **Zustand** | One store per feature in `features/<x>/model/`. |
-| HTTP client | Thin `fetch` wrapper in `src/shared/api/client.ts`, base URL via `import.meta.env.VITE_API_URL`. | No backend yet, but the extension point exists. |
-| Test runner | **Vitest** + **@testing-library/react** + **jsdom** | Vitest already present. |
-| Linting | **ESLint 10.2.1** (flat config) — type-aware preset + boundary rules + extra typing rules (see §4). | |
-| Formatter | **Prettier**. | |
+| Concern      | Choice                                                                                              | Rationale                                                                                                                                                                                                 |
+| ------------ | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Build tool   | **Vite 8.0.10**                                                                                     | Fastest DX for SPA; first-class PWA via `vite-plugin-pwa`.                                                                                                                                                |
+| UI library   | **React 19.2**                                                                                      | Latest stable; matches React Router 7 expectations.                                                                                                                                                       |
+| Routing      | **React Router 7** (library mode)                                                                   | Use `createBrowserRouter` with optional loaders; no framework mode (we are not using Remix-style server data here).                                                                                       |
+| PWA          | **vite-plugin-pwa** (Workbox)                                                                       | Standard PWA pipeline: manifest, service worker, icons.                                                                                                                                                   |
+| Styling      | **Tailwind CSS** + **CSS variables**                                                                | Tokens live as CSS vars under `src/shared/ui/styles/tokens.css`; Tailwind consumes them via `theme.extend`. Theme switching via `[data-theme="dark"]`. The future DS only needs to populate token values. |
+| Server state | **@tanstack/react-query**                                                                           | Cache, fetch, invalidation. Provider in `src/app/providers/`.                                                                                                                                             |
+| Client state | **Zustand**                                                                                         | One store per feature in `features/<x>/model/`.                                                                                                                                                           |
+| HTTP client  | Thin `fetch` wrapper in `src/shared/api/client.ts`, base URL via `import.meta.env.VITE_API_URL`.    | No backend yet, but the extension point exists.                                                                                                                                                           |
+| Test runner  | **Vitest** + **@testing-library/react** + **jsdom**                                                 | Vitest already present.                                                                                                                                                                                   |
+| Linting      | **ESLint 10.2.1** (flat config) — type-aware preset + boundary rules + extra typing rules (see §4). |                                                                                                                                                                                                           |
+| Formatter    | **Prettier**.                                                                                       |                                                                                                                                                                                                           |
 
 Pinned versions are illustrative; the implementation plan will pin exact compatible versions at install time.
 
@@ -93,14 +93,14 @@ finew-app/
 
 Allowed import direction (each layer can import from any layer **below** it; never sideways or upward):
 
-| From ↓ / Allowed ↓ | app | pages | widgets | features | entities | shared |
-|---|---|---|---|---|---|---|
-| **app**      | — | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **pages**    | ✗ | — | ✓ | ✓ | ✓ | ✓ |
-| **widgets**  | ✗ | ✗ | — | ✓ | ✓ | ✓ |
-| **features** | ✗ | ✗ | ✗ | — (sibling features forbidden) | ✓ | ✓ |
-| **entities** | ✗ | ✗ | ✗ | ✗ | — | ✓ |
-| **shared**   | ✗ | ✗ | ✗ | ✗ | ✗ | — (intra-shared OK) |
+| From ↓ / Allowed ↓ | app | pages | widgets | features                       | entities | shared              |
+| ------------------ | --- | ----- | ------- | ------------------------------ | -------- | ------------------- |
+| **app**            | —   | ✓     | ✓       | ✓                              | ✓        | ✓                   |
+| **pages**          | ✗   | —     | ✓       | ✓                              | ✓        | ✓                   |
+| **widgets**        | ✗   | ✗     | —       | ✓                              | ✓        | ✓                   |
+| **features**       | ✗   | ✗     | ✗       | — (sibling features forbidden) | ✓        | ✓                   |
+| **entities**       | ✗   | ✗     | ✗       | ✗                              | —        | ✓                   |
+| **shared**         | ✗   | ✗     | ✗       | ✗                              | ✗        | — (intra-shared OK) |
 
 Notably: **feature → feature imports are forbidden**. Cross-feature composition happens at `widgets/` or `pages/`.
 
@@ -109,6 +109,7 @@ Within each layer, slices (e.g., `features/transactions`) expose only via their 
 ### 3.2 Per-directory `CLAUDE.md` (Progressive Disclosure)
 
 Each directory listed above gets a small `CLAUDE.md` covering:
+
 - The layer's purpose in one sentence.
 - Its allowed dependencies (mirroring §3.1).
 - The local code style (slice layout, barrel rule, naming).
@@ -126,20 +127,20 @@ Replace the current `@eslint/js` + `typescript-eslint` "recommended" with the ty
 
 Enable additional rules to enforce explicit typing on variables and function boundaries:
 
-| Rule | Level | Notes |
-|---|---|---|
-| `@typescript-eslint/no-explicit-any` | error | |
-| `@typescript-eslint/no-unsafe-argument` | error | |
-| `@typescript-eslint/no-unsafe-assignment` | error | |
-| `@typescript-eslint/no-unsafe-call` | error | |
-| `@typescript-eslint/no-unsafe-member-access` | error | |
-| `@typescript-eslint/no-unsafe-return` | error | |
-| `@typescript-eslint/explicit-module-boundary-types` | error | exported function/component signatures must be annotated |
-| `@typescript-eslint/explicit-function-return-type` | error | `{ allowExpressions: true }` so inline arrow callbacks/JSX handlers stay terse |
-| `@typescript-eslint/consistent-type-imports` | error | aligns with `verbatimModuleSyntax` |
-| `@typescript-eslint/no-non-null-assertion` | error | |
-| `@typescript-eslint/no-floating-promises` | error | |
-| `@typescript-eslint/await-thenable` | error | |
+| Rule                                                | Level | Notes                                                                          |
+| --------------------------------------------------- | ----- | ------------------------------------------------------------------------------ |
+| `@typescript-eslint/no-explicit-any`                | error |                                                                                |
+| `@typescript-eslint/no-unsafe-argument`             | error |                                                                                |
+| `@typescript-eslint/no-unsafe-assignment`           | error |                                                                                |
+| `@typescript-eslint/no-unsafe-call`                 | error |                                                                                |
+| `@typescript-eslint/no-unsafe-member-access`        | error |                                                                                |
+| `@typescript-eslint/no-unsafe-return`               | error |                                                                                |
+| `@typescript-eslint/explicit-module-boundary-types` | error | exported function/component signatures must be annotated                       |
+| `@typescript-eslint/explicit-function-return-type`  | error | `{ allowExpressions: true }` so inline arrow callbacks/JSX handlers stay terse |
+| `@typescript-eslint/consistent-type-imports`        | error | aligns with `verbatimModuleSyntax`                                             |
+| `@typescript-eslint/no-non-null-assertion`          | error |                                                                                |
+| `@typescript-eslint/no-floating-promises`           | error |                                                                                |
+| `@typescript-eslint/await-thenable`                 | error |                                                                                |
 
 Test files (`*.test.ts(x)`) get a relaxed override that turns off `explicit-function-return-type` and `explicit-module-boundary-types` to keep test code readable.
 
@@ -205,6 +206,7 @@ Optionally, `src/shared/ui/styles/tokens.test.ts` reads `tokens.css` and asserts
 ## 7. Files added or changed
 
 **New files**
+
 - `index.html`, `vite.config.ts`, `tailwind.config.ts`, `postcss.config.js`
 - `public/icons/` (placeholder icons)
 - `src/main.tsx`
@@ -226,6 +228,7 @@ Optionally, `src/shared/ui/styles/tokens.test.ts` reads `tokens.css` and asserts
 - `.prettierrc` (and `.prettierignore`)
 
 **Modified files**
+
 - `eslint.config.js` — type-aware preset, `eslint-plugin-boundaries`, React plugins, type-rigor rules.
 - `tsconfig.json` — add `"jsx": "react-jsx"`, `"types": ["vite/client", "vitest/globals"]`, ensure `parserOptions.project` works.
 - `tsconfig.build.json` — exclude `*.test.tsx` and `*.test.ts`.
@@ -233,6 +236,7 @@ Optionally, `src/shared/ui/styles/tokens.test.ts` reads `tokens.css` and asserts
 - `CLAUDE.md` (root) — new "Architecture" section indexing per-layer `CLAUDE.md` files.
 
 **Deleted files**
+
 - `src/index.ts`, `src/index.test.ts` (replaced by the new entrypoint and skeleton tests).
 
 ## 8. Risk and YAGNI register

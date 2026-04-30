@@ -6,6 +6,7 @@
 **Imported by:** only `src/main.tsx`.
 
 **Conventions:**
+
 - One `App.tsx` exporting `App`.
 - Provider components in `providers/` are React components named `<XProvider>`.
 - Global stylesheet entry: `styles/index.css` (imported by `main.tsx`).

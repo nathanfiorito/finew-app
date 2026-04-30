@@ -6,6 +6,7 @@
 **Must NOT import from:** `app`, other `pages`.
 
 **Conventions:**
+
 - Folder per page, e.g. `home/HomePage.tsx`.
 - Default export is forbidden — export the named component (`export function HomePage`).
 - Page components return `JSX.Element` and take no props (data comes from loaders or hooks).
