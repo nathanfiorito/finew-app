@@ -8,3 +8,4 @@ export * from "./Skeleton/index.js";
 export * from "./EmptyState/index.js";
 export * from "./Breadcrumb/index.js";
 export * from "./Pagination/index.js";
+export * from "./Money/index.js";

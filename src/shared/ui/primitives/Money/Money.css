@@ -1,0 +1,24 @@
+@layer components {
+  .fw-money {
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+    white-space: nowrap;
+  }
+  .fw-money-display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+  }
+  .fw-money-sign {
+    margin-right: 1px;
+  }
+  .fw-money-symbol {
+    color: var(--fg-3);
+    margin-right: 4px;
+    font-size: 0.7em;
+    vertical-align: 0.18em;
+  }
+  .fw-money-display .fw-money-symbol {
+    font-size: 0.55em;
+    vertical-align: 0.4em;
+  }
+}
