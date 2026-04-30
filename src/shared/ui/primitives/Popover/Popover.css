@@ -1,0 +1,25 @@
+/* src/shared/ui/primitives/Popover/Popover.css */
+@layer components {
+  .fw-popover {
+    background: var(--surface-0);
+    color: var(--fg-1);
+    border: var(--hairline);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--t-body-sm);
+    z-index: 55;
+    min-width: 200px;
+    max-width: 360px;
+    animation: fw-popover-fade-in var(--duration-2) var(--ease-standard);
+  }
+  .fw-popover-arrow {
+    fill: var(--surface-0);
+    stroke: var(--border-1);
+  }
+  @keyframes fw-popover-fade-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}

@@ -15,11 +15,14 @@ import {
   ChevronRight,
   ChevronLeft,
   ChevronDown,
+  ChevronUp,
   X,
   Filter,
   Calendar,
   Settings,
   Wallet,
+  Check,
+  Minus,
   type LucideIcon,
 } from "lucide-react";
 
@@ -39,11 +42,14 @@ const REGISTRY = {
   chevronRight: ChevronRight,
   chevronLeft: ChevronLeft,
   chevronDown: ChevronDown,
+  chevronUp: ChevronUp,
   close: X,
   filter: Filter,
   calendar: Calendar,
   cog: Settings,
   wallet: Wallet,
+  check: Check,
+  minus: Minus,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof REGISTRY;

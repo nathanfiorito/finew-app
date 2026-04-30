@@ -1,0 +1,98 @@
+/* src/shared/ui/primitives/Modal/Modal.css */
+@layer components {
+  .fw-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--overlay);
+    z-index: 50;
+    animation: fw-modal-fade-in var(--duration-2) var(--ease-standard);
+  }
+  .fw-modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--surface-0);
+    color: var(--fg-1);
+    border: var(--hairline);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    z-index: 51;
+    display: flex;
+    flex-direction: column;
+    animation: fw-modal-pop-in var(--duration-2) var(--ease-standard);
+  }
+  .fw-modal-sm { max-width: 480px; }
+  .fw-modal-md { max-width: 640px; }
+  .fw-modal-lg { max-width: 800px; }
+
+  .fw-modal-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-6);
+    border-bottom: var(--hairline);
+  }
+  .fw-modal-titles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+  .fw-modal-title {
+    font-family: var(--font-serif);
+    font-size: var(--t-h3);
+    font-weight: 600;
+    color: var(--fg-1);
+    margin: 0;
+  }
+  .fw-modal-desc {
+    font-family: var(--font-sans);
+    font-size: var(--t-body-sm);
+    color: var(--fg-2);
+    margin: 0;
+  }
+  .fw-modal-close {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 4px;
+    color: var(--fg-2);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+  .fw-modal-close:hover {
+    background: var(--surface-2);
+    color: var(--fg-1);
+  }
+  .fw-modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .fw-modal-body {
+    padding: var(--space-5) var(--space-6);
+    flex: 1;
+  }
+  .fw-modal-foot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    border-top: var(--hairline);
+  }
+
+  @keyframes fw-modal-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fw-modal-pop-in {
+    from { opacity: 0; transform: translate(-50%, -48%); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
+  }
+}
