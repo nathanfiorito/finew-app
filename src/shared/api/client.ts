@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.VITE_API_URL ?? "";
+const baseUrl: string = (import.meta.env.VITE_API_URL as string | undefined) ?? "";
 
 export interface RequestOptions extends Omit<RequestInit, "body"> {
   body?: unknown;
@@ -10,12 +10,12 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
     ...rest,
     headers: {
       "Content-Type": "application/json",
-      ...headers,
+      ...(headers as Record<string, string> | undefined),
     },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   if (!response.ok) {
-    throw new Error(`Request failed: ${response.status} ${response.statusText}`);
+    throw new Error(`Request failed: ${String(response.status)} ${response.statusText}`);
   }
   return response.json() as Promise<T>;
 }

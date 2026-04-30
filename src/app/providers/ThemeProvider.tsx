@@ -11,13 +11,15 @@ interface ThemeState {
 
 export const useThemeStore = create<ThemeState>((set) => ({
   theme: "light",
-  setTheme: (theme) => set({ theme }),
+  setTheme: (theme) => {
+    set({ theme });
+  },
 }));
 
 export function ThemeProvider({ children }: { children: ReactNode }): JSX.Element {
   const theme = useThemeStore((s) => s.theme);
   useEffect(() => {
-    document.documentElement.dataset["theme"] = theme;
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
   return <>{children}</>;
 }
