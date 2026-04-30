@@ -15,3 +15,4 @@ export * from "./Modal/index.js";
 export * from "./BottomSheet/index.js";
 export * from "./Toast/index.js";
 export * from "./Tabs/index.js";
+export * from "./Accordion/index.js";

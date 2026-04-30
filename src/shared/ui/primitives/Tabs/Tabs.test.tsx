@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { createRef, type JSX } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
