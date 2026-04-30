@@ -13,3 +13,4 @@ export * from "./Sparkline/index.js";
 export * from "./KPIStat/index.js";
 export * from "./Modal/index.js";
 export * from "./BottomSheet/index.js";
+export * from "./Toast/index.js";
