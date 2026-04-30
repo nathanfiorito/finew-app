@@ -1,0 +1,38 @@
+@layer components {
+  .fw-pagination {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-sans);
+  }
+  .fw-pagination-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 0;
+    background: transparent;
+    color: var(--fg-1);
+    font-size: var(--t-body-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fw-pagination-btn:hover:not(:disabled) {
+    background: var(--surface-2);
+  }
+  .fw-pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .fw-pagination-btn[aria-current="page"] {
+    background: var(--accent-soft);
+    color: var(--accent-press);
+    font-weight: 600;
+  }
+  .fw-pagination-ellipsis {
+    color: var(--fg-3);
+    padding: 0 var(--space-2);
+  }
+}

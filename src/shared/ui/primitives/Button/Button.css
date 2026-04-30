@@ -1,0 +1,80 @@
+@layer components {
+  .fw-btn {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background var(--duration-2) var(--ease-standard),
+      color var(--duration-2) var(--ease-standard),
+      border-color var(--duration-2) var(--ease-standard);
+  }
+  .fw-btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .fw-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .fw-btn:disabled,
+  .fw-btn[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .fw-btn-sm { height: 28px; padding: 0 10px; font-size: 12.5px; }
+  .fw-btn-md { height: 36px; padding: 0 14px; font-size: 13.5px; }
+  .fw-btn-lg { height: 44px; padding: 0 18px; font-size: 15px; }
+
+  .fw-btn-primary {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+  .fw-btn-primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+  }
+  .fw-btn-secondary {
+    background: var(--surface-1);
+    color: var(--fg-1);
+    border-color: var(--border-2);
+  }
+  .fw-btn-secondary:hover:not(:disabled) {
+    background: var(--surface-2);
+  }
+  .fw-btn-ghost {
+    background: transparent;
+    color: var(--fg-1);
+  }
+  .fw-btn-ghost:hover:not(:disabled) {
+    background: var(--surface-2);
+  }
+  .fw-btn-danger {
+    background: transparent;
+    color: var(--loss);
+    border-color: var(--border-2);
+  }
+  .fw-btn-danger:hover:not(:disabled) {
+    background: var(--loss-soft);
+  }
+
+  .fw-btn-spinner {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: fw-btn-spin 0.7s linear infinite;
+  }
+  @keyframes fw-btn-spin {
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fw-btn-spinner { animation: none; }
+  }
+}

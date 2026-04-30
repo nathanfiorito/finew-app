@@ -1,0 +1,22 @@
+@layer components {
+  .fw-pill {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px 10px 5px 8px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-1);
+    border: 1px solid var(--border-1);
+    color: var(--fg-1);
+  }
+  .fw-pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex: 0 0 8px;
+  }
+}

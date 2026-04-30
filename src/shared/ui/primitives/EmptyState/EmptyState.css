@@ -1,0 +1,32 @@
+@layer components {
+  .fw-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    text-align: center;
+    padding: var(--space-7) var(--space-6);
+    color: var(--fg-2);
+  }
+  .fw-empty-icon {
+    color: var(--fg-3);
+  }
+  .fw-empty-title {
+    font-family: var(--font-serif);
+    font-size: var(--t-h3);
+    font-weight: 600;
+    color: var(--fg-1);
+    margin: 0;
+  }
+  .fw-empty-desc {
+    font-family: var(--font-sans);
+    font-size: var(--t-body);
+    color: var(--fg-2);
+    max-width: 48ch;
+    margin: 0;
+  }
+  .fw-empty-action {
+    margin-top: var(--space-3);
+  }
+}

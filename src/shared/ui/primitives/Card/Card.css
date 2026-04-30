@@ -1,0 +1,24 @@
+@layer components {
+  .fw-card {
+    background: var(--surface-1);
+    border: var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .fw-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: var(--hairline);
+  }
+  .fw-card-body {
+    padding: var(--space-6);
+  }
+  [data-density="compact"] .fw-card-head {
+    padding: 10px 14px;
+  }
+  [data-density="compact"] .fw-card-body {
+    padding: var(--space-4);
+  }
+}
