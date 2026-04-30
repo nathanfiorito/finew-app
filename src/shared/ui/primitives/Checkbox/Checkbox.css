@@ -1,0 +1,64 @@
+@layer components {
+  .fw-check {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    color: var(--fg-1);
+    cursor: pointer;
+    user-select: none;
+  }
+  .fw-check-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .fw-check-wrap[data-disabled="true"] .fw-check {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .fw-check-root {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-1);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--duration-2) var(--ease-standard),
+      border-color var(--duration-2) var(--ease-standard);
+  }
+  .fw-check-root:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .fw-check-root[data-state="checked"],
+  .fw-check-root[data-state="indeterminate"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-fg);
+  }
+  .fw-check-root[data-disabled] {
+    cursor: not-allowed;
+  }
+  .fw-check-wrap[data-state="error"] .fw-check-root {
+    border-color: var(--loss);
+  }
+  .fw-check-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-fg);
+  }
+  .fw-check-error {
+    color: var(--loss);
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    margin-top: 2px;
+    display: block;
+  }
+}
