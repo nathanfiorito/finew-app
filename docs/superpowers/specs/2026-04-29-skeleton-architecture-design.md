@@ -31,7 +31,7 @@ Out of scope for this wave: authentication, real design tokens / DS components, 
 | Client state | **Zustand** | One store per feature in `features/<x>/model/`. |
 | HTTP client | Thin `fetch` wrapper in `src/shared/api/client.ts`, base URL via `import.meta.env.VITE_API_URL`. | No backend yet, but the extension point exists. |
 | Test runner | **Vitest** + **@testing-library/react** + **jsdom** | Vitest already present. |
-| Linting | ESLint 9 (flat config) — type-aware preset + boundary rules + extra typing rules (see §4). | |
+| Linting | **ESLint 10.2.1** (flat config) — type-aware preset + boundary rules + extra typing rules (see §4). | |
 | Formatter | **Prettier**. | |
 
 Pinned versions are illustrative; the implementation plan will pin exact compatible versions at install time.
