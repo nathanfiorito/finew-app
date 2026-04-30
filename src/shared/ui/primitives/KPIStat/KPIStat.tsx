@@ -3,10 +3,7 @@ import { forwardRef } from "react";
 import { Icon } from "../Icon/Icon.js";
 import { Money } from "../Money/Money.js";
 import { Sparkline, type SparklineTone } from "../Sparkline/Sparkline.js";
-import {
-  useLocale,
-  type Locale,
-} from "../../../../app/providers/LocaleProvider.js";
+import { useLocale, type Locale } from "../../../config/locale/index.js";
 import "./KPIStat.css";
 
 export interface KPIStatProps extends HTMLAttributes<HTMLDivElement> {

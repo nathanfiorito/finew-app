@@ -5,7 +5,7 @@ import "./Sparkline.css";
 export type SparklineTone = "gain" | "loss" | "neutral";
 
 export interface SparklineProps
-  extends Omit<SVGAttributes<SVGSVGElement>, "values" | "color"> {
+  extends Omit<SVGAttributes<SVGSVGElement>, "values" | "color" | "fill"> {
   values: number[];
   width?: number;
   height?: number;

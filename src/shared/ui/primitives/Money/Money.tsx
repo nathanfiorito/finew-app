@@ -1,9 +1,6 @@
 import type { ForwardedRef, HTMLAttributes, JSX } from "react";
 import { forwardRef } from "react";
-import {
-  useLocale,
-  type Locale,
-} from "../../../../app/providers/LocaleProvider.js";
+import { useLocale, type Locale } from "../../../config/locale/index.js";
 import "./Money.css";
 
 export type MoneySign = "auto" | "always" | "never";

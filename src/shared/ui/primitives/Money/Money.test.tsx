@@ -1,9 +1,9 @@
 import { createRef } from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Money } from "./Money.js";
-import { useLocaleStore } from "../../../../app/providers/LocaleProvider.js";
+import { useLocaleStore } from "../../../config/locale/index.js";
 
 beforeEach(() => {
   useLocaleStore.setState({ locale: "pt-BR" });

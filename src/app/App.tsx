@@ -4,7 +4,7 @@ import { router } from "./router.js";
 import { QueryProvider } from "./providers/QueryProvider.js";
 import { ThemeProvider } from "./providers/ThemeProvider.js";
 import { DensityProvider } from "./providers/DensityProvider.js";
-import { LocaleProvider } from "./providers/LocaleProvider.js";
+import { LocaleProvider } from "../shared/config/locale/index.js";
 
 export function App(): JSX.Element {
   return (

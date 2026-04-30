@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import { KPIStat } from "./KPIStat.js";
-import { useLocaleStore } from "../../../../app/providers/LocaleProvider.js";
+import { useLocaleStore } from "../../../config/locale/index.js";
 
 beforeEach(() => {
   useLocaleStore.setState({ locale: "pt-BR" });
