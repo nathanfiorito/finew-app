@@ -3,6 +3,7 @@ import tseslint from "typescript-eslint";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import boundaries from "eslint-plugin-boundaries";
 
 export default tseslint.config(
   { ignores: ["dist/**", "node_modules/**", "coverage/**"] },
@@ -52,10 +53,44 @@ export default tseslint.config(
     },
   },
   {
+    files: ["src/**/*.{ts,tsx}"],
+    plugins: { boundaries },
+    settings: {
+      "import/resolver": {
+        typescript: { alwaysTryTypes: true },
+      },
+      "boundaries/include": ["src/**/*"],
+      "boundaries/elements": [
+        { type: "app",      pattern: "src/app/*" },
+        { type: "pages",    pattern: "src/pages/*" },
+        { type: "widgets",  pattern: "src/widgets/*" },
+        { type: "features", pattern: "src/features/*" },
+        { type: "entities", pattern: "src/entities/*" },
+        { type: "shared",   pattern: "src/shared/*" },
+      ],
+    },
+    rules: {
+      "boundaries/element-types": ["error", {
+        default: "disallow",
+        rules: [
+          { from: "app",      allow: ["pages", "widgets", "features", "entities", "shared"] },
+          { from: "pages",    allow: ["widgets", "features", "entities", "shared"] },
+          { from: "widgets",  allow: ["features", "entities", "shared"] },
+          { from: "features", allow: ["entities", "shared"] },
+          { from: "entities", allow: ["shared"] },
+          { from: "shared",   allow: ["shared"] },
+        ],
+      }],
+      "boundaries/no-private": "error",
+    },
+  },
+  {
     files: ["**/*.test.ts", "**/*.test.tsx", "src/test/**"],
     rules: {
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
     },
   },
 );
