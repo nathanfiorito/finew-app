@@ -1,0 +1,51 @@
+/* src/shared/ui/primitives/BottomSheet/BottomSheet.css */
+@layer components {
+  .fw-sheet-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--overlay);
+    z-index: 50;
+  }
+  .fw-sheet-content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--surface-0);
+    color: var(--fg-1);
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    padding: 8px 16px 24px;
+    max-height: 90%;
+    overflow: auto;
+    z-index: 51;
+    display: flex;
+    flex-direction: column;
+  }
+  .fw-sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--fg-4);
+    border-radius: 999px;
+    margin: 4px auto 12px;
+    flex-shrink: 0;
+  }
+  .fw-sheet-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-3);
+  }
+  .fw-sheet-title {
+    font-family: var(--font-serif);
+    font-size: var(--t-h4);
+    font-weight: 600;
+    color: var(--fg-1);
+    margin: 0;
+  }
+  .fw-sheet-body {
+    padding-top: 12px;
+    flex: 1;
+  }
+}
