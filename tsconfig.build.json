@@ -2,8 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "declaration": true,
+    "rootDir": "src",
     "noEmit": false
   },
-  "exclude": ["**/*.test.ts"]
+  "include": ["src"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "src/architecture.test.ts"]
 }

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Table — Transactions</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); font-family: var(--font-sans); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); padding: 8px 10px; border-bottom: var(--hairline); }
+  td { padding: 10px; border-bottom: var(--hairline); vertical-align: middle; }
+  td.amount, th.amount { text-align: right; font-variant-numeric: tabular-nums lining-nums; font-weight: 500; }
+  .gain { color: var(--gain); }
+  .loss { color: var(--loss); }
+  .pill { font: 500 11px/1 var(--font-sans); padding: 4px 8px 4px 6px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; background: var(--surface-1); border: 1px solid var(--border-1); }
+  .pill .dot { width: 7px; height: 7px; border-radius: 2px; }
+  .date { color: var(--fg-3); font-feature-settings: "tnum" 1, "lnum" 1; }
+</style>
+</head>
+<body>
+  <table>
+    <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Conta</th><th class="amount">Valor</th></tr></thead>
+    <tbody>
+      <tr><td class="date">28/04</td><td>Mercado Pão de Açúcar</td><td><span class="pill"><span class="dot" style="background:#3F5E4A"></span>Mercado</span></td><td>Itaú · CC</td><td class="amount loss">−482,30</td></tr>
+      <tr><td class="date">27/04</td><td>Salário — abril</td><td><span class="pill"><span class="dot" style="background:#6B7A3D"></span>Renda</span></td><td>Itaú · CC</td><td class="amount gain">+8.200,00</td></tr>
+      <tr><td class="date">26/04</td><td>Uber · 3 corridas</td><td><span class="pill"><span class="dot" style="background:#2F5F66"></span>Transporte</span></td><td>Nubank · Crédito</td><td class="amount loss">−84,12</td></tr>
+      <tr><td class="date">25/04</td><td>Spotify Family</td><td><span class="pill"><span class="dot" style="background:#B08A2E"></span>Assinaturas</span></td><td>Nubank · Crédito</td><td class="amount loss">−34,90</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dark Theme</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html { background: #14110E; }
+  body { margin: 0; padding: 20px; background: #14110E; color: #EFE9DD; font-family: var(--font-sans); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .swatch { border: 1px solid rgba(239,233,221,0.10); border-radius: 8px; overflow: hidden; }
+  .chip { height: 48px; }
+  .meta { padding: 6px 10px; background: #1C1814; }
+  .name { font-weight: 600; font-size: 11px; }
+  .hex  { font: 400 10px/1.3 var(--font-mono); color: #807A6F; margin-top: 2px; }
+  h3 { font: 600 11px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: #807A6F; margin: 0 0 8px 0; }
+  .group { margin-bottom: 12px; }
+</style>
+</head>
+<body data-theme="dark">
+  <div class="group">
+    <h3>Dark — Surfaces</h3>
+    <div class="row">
+      <div class="swatch"><div class="chip" style="background: #14110E"></div><div class="meta"><div class="name">bg</div><div class="hex">#14110E</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #1C1814"></div><div class="meta"><div class="name">surface-1</div><div class="hex">#1C1814</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #25201A"></div><div class="meta"><div class="name">surface-2</div><div class="hex">#25201A</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #2F2922"></div><div class="meta"><div class="name">surface-3</div><div class="hex">#2F2922</div></div></div>
+    </div>
+  </div>
+  <div class="group">
+    <h3>Dark — Foreground & Accent</h3>
+    <div class="row">
+      <div class="swatch"><div class="chip" style="background: #EFE9DD"></div><div class="meta"><div class="name">fg-1</div><div class="hex">#EFE9DD</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #B8B0A0"></div><div class="meta"><div class="name">fg-2</div><div class="hex">#B8B0A0</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #7FA487"></div><div class="meta"><div class="name">accent</div><div class="hex">#7FA487</div></div></div>
+      <div class="swatch"><div class="chip" style="background: #C97676"></div><div class="meta"><div class="name">loss</div><div class="hex">#C97676</div></div></div>
+    </div>
+  </div>
+</body>
+</html>

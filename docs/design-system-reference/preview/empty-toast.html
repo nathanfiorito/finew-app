@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Empty State & Toast</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); font-family: var(--font-sans); display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+  .empty { padding: 28px 24px; background: var(--surface-1); border: var(--hairline); border-radius: var(--radius-lg); text-align: center; }
+  .empty h3 { font-family: var(--font-serif); font-weight: 600; font-size: 18px; margin: 6px 0 6px; }
+  .empty p { font-size: 13px; color: var(--fg-2); margin: 0 0 14px; line-height: 1.5; }
+  .empty .btn { background: var(--accent); color: var(--accent-fg); border: 0; height: 32px; padding: 0 14px; border-radius: var(--radius-md); font: 500 13px/1 var(--font-sans); cursor: pointer; }
+  .micro { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); }
+
+  .toast { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; background: var(--surface-1); border: var(--hairline); border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin-bottom: 10px; font-size: 13px; }
+  .toast .icon { width: 16px; height: 16px; border-radius: 50%; flex: 0 0 16px; margin-top: 2px; }
+  .toast .icon.gain { background: var(--gain); }
+  .toast .icon.loss { background: var(--loss); }
+  .toast .icon.warn { background: var(--warn); }
+  .toast strong { font-weight: 600; }
+  .toast small { display: block; color: var(--fg-3); font-size: 12px; margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="empty">
+    <div class="micro">Sem transações</div>
+    <h3>Ainda não há lançamentos em abril.</h3>
+    <p>Importe um extrato bancário ou registre uma transação manualmente para começar a acompanhar suas despesas.</p>
+    <button class="btn">Adicionar transação</button>
+  </div>
+  <div>
+    <div class="toast"><div class="icon gain"></div><div><strong>Transação registrada.</strong><small>Mercado · R$ 482,30 · Itaú</small></div></div>
+    <div class="toast"><div class="icon warn"></div><div><strong>Fatura Nubank vence em 3 dias.</strong><small>R$ 1.840,15 · 03/05</small></div></div>
+    <div class="toast"><div class="icon loss"></div><div><strong>Falha ao sincronizar conta.</strong><small>Itaú · tente novamente em alguns minutos.</small></div></div>
+  </div>
+</body>
+</html>
