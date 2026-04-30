@@ -91,11 +91,25 @@ Idêntico ao anterior, alterando:
 
 - `deletion` — bloqueia delete da branch.
 - `non_fast_forward` — bloqueia force-push.
-- `required_linear_history` — força histórico linear.
+- `required_linear_history` — **só em `develop`**, força histórico linear (compatível com squash). **Removido de `main`** para permitir merge commits — ver §4.4.
 - `pull_request` com `required_approving_review_count: 0` — força que toda mudança passe por PR (sem aprovação obrigatória, pois é solo dev).
-- `allowed_merge_methods: ["squash"]` — desabilita merge commit e rebase merge na UI.
+- `allowed_merge_methods` — `["squash"]` em `develop`, **`["merge"]` em `main`**. Ver §4.4.
 - `strict_required_status_checks_policy: true` — exige branch atualizada com a base antes do merge.
 - `bypass_actors: []` — sem exceções, nem para admin.
+
+### 4.4 Estratégia de merge por branch — squash em `develop`, merge commit em `main`
+
+`feature → develop` usa **squash merge**: cada PR de feature vira um único commit semântico em `develop`, mantendo a história linear e legível por feature.
+
+`develop → main` usa **merge commit** (com `required_linear_history` desativado em `main`). Isso é deliberado: usar squash em ambas as direções fazia `main` acumular commits "fantasma" — squashes do mesmo conteúdo de `develop` mas com SHA diferente. Após algumas releases, `develop` e `main` divergiam por SHA mesmo tendo conteúdo idêntico, e o próximo `develop → main` produzia conflitos de conteúdo duplicado (tipicamente desencadeados por uma passagem do prettier ou qualquer edição que tocasse arquivos previamente squashed).
+
+Com merge commit em `develop → main`:
+
+- `main` herda os mesmos SHAs de `develop`, conectados por um merge commit que serve como "marca de release".
+- `develop` e `main` compartilham história. Qualquer commit em `develop` é alcançável a partir de `main` após a primeira release.
+- Não há mais necessidade de "sync main back into develop" — o problema desaparece.
+
+Trade-off aceito: o histórico linear por first-parent de `main` mostra apenas merge commits (cada release), e os commits de feature ficam alcançáveis via second parent. Para um repo solo de aplicação interna, isso é mais útil que uma linha "uma feature por commit" em `main`.
 
 ## 5. Workflow de CI
 
@@ -245,8 +259,8 @@ Sem isso, o job `open-pr` falha com `GraphQL: GitHub Actions is not permitted to
 
 ## 7. Convenções
 
-- **Conventional Commits** — convenção manual, sem enforcement automatizado. Aplicada no título do PR (que vira o commit final via squash).
-- **Estratégia de merge** — apenas squash (forçado pelo ruleset).
+- **Conventional Commits** — convenção manual, sem enforcement automatizado. Aplicada no título do PR (que vira o commit final via squash em `feature → develop`).
+- **Estratégia de merge** — squash em `feature → develop`, merge commit em `develop → main`. Ver §4.4.
 - **Nome de feature branch** — `feature/<descrição-curta-em-kebab>`.
 
 ## 8. Sequência de bootstrap (única execução)
