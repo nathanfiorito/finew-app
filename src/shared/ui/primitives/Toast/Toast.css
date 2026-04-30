@@ -1,0 +1,29 @@
+/* src/shared/ui/primitives/Toast/Toast.css */
+@layer components {
+  .fw-toaster [data-sonner-toast] {
+    background: var(--surface-1);
+    color: var(--fg-1);
+    border: var(--hairline);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-sans);
+    font-size: var(--t-body-sm);
+    padding: var(--space-3) var(--space-4);
+  }
+  .fw-toaster [data-sonner-toast][data-type="success"] {
+    border-color: var(--gain);
+    color: var(--gain);
+  }
+  .fw-toaster [data-sonner-toast][data-type="error"] {
+    border-color: var(--loss);
+    color: var(--loss);
+  }
+  .fw-toaster [data-sonner-toast][data-type="warning"] {
+    border-color: var(--warn);
+    color: var(--warn);
+  }
+  .fw-toaster [data-sonner-toast][data-type="info"] {
+    border-color: var(--info);
+    color: var(--info);
+  }
+}

@@ -1,0 +1,73 @@
+/* src/shared/ui/primitives/Stepper/Stepper.css */
+@layer components {
+  .fw-stepper {
+    font-family: var(--font-sans);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .fw-stepper-list {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .fw-stepper-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0;
+    margin: 0;
+  }
+  .fw-stepper-trigger {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    padding: var(--space-2) 0;
+    color: var(--fg-3);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-top: 2px solid var(--border-1);
+  }
+  .fw-stepper-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  .fw-stepper-trigger:disabled {
+    cursor: not-allowed;
+  }
+  .fw-stepper-trigger[data-state="active"] {
+    color: var(--fg-1);
+    border-top-color: var(--accent);
+  }
+  .fw-stepper-trigger[data-completed="true"] {
+    color: var(--fg-2);
+    border-top-color: var(--accent);
+  }
+  .fw-stepper-step-num {
+    font-size: var(--t-caption);
+    font-weight: 600;
+    letter-spacing: var(--tracking-micro);
+    text-transform: uppercase;
+  }
+  .fw-stepper-step-label {
+    font-size: var(--t-body-sm);
+    font-weight: 500;
+    color: inherit;
+  }
+  .fw-stepper-step-desc {
+    font-size: var(--t-caption);
+    color: var(--fg-3);
+  }
+  .fw-stepper-panel {
+    padding: 0;
+  }
+}
