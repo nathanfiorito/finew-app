@@ -28,13 +28,13 @@ feature/* ──push──▶ CI ──ok──▶ auto-PR ──▶ develop ─
 
 ## 3. Arquitetura
 
-| Camada | Localização | Responsabilidade |
-|---|---|---|
-| Rulesets | `.github/rulesets/main.json`, `.github/rulesets/develop.json` | Proteção declarativa de `main` e `develop` |
-| Bootstrap | Comandos `gh api` documentados na seção 8 | Aplicação manual única dos rulesets |
-| CI | `.github/workflows/ci.yml` | `lint → typecheck → test → build` + job `open-pr` |
-| Tooling | `package.json`, `tsconfig*.json`, `eslint.config.js`, `.nvmrc`, `.gitignore` | Configs invocadas pelo CI |
-| Smoke | `src/index.ts`, `src/index.test.ts` | Garantir que o pipeline passe na primeira execução |
+| Camada    | Localização                                                                  | Responsabilidade                                   |
+| --------- | ---------------------------------------------------------------------------- | -------------------------------------------------- |
+| Rulesets  | `.github/rulesets/main.json`, `.github/rulesets/develop.json`                | Proteção declarativa de `main` e `develop`         |
+| Bootstrap | Comandos `gh api` documentados na seção 8                                    | Aplicação manual única dos rulesets                |
+| CI        | `.github/workflows/ci.yml`                                                   | `lint → typecheck → test → build` + job `open-pr`  |
+| Tooling   | `package.json`, `tsconfig*.json`, `eslint.config.js`, `.nvmrc`, `.gitignore` | Configs invocadas pelo CI                          |
+| Smoke     | `src/index.ts`, `src/index.test.ts`                                          | Garantir que o pipeline passe na primeira execução |
 
 ## 4. Rulesets
 
@@ -192,7 +192,7 @@ PRs criados via `GITHUB_TOKEN` não disparam workflows aninhados. Aceitável aqu
 
 ### 5.4 Pré-condição obrigatória nas configurações do repo
 
-`GITHUB_TOKEN` consegue criar PRs apenas se a opção **"Allow GitHub Actions to create and approve pull requests"** estiver habilitada em *Settings → Actions → General → Workflow permissions*. Por padrão vem desligada.
+`GITHUB_TOKEN` consegue criar PRs apenas se a opção **"Allow GitHub Actions to create and approve pull requests"** estiver habilitada em _Settings → Actions → General → Workflow permissions_. Por padrão vem desligada.
 
 Habilitar via API (uma vez):
 
