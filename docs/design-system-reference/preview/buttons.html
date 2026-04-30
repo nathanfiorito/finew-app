@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  h3 { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); margin: 0 0 8px 0; }
+  .btn {
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+    height: 36px; padding: 0 14px; border-radius: var(--radius-md);
+    border: 1px solid transparent; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background var(--duration-2) var(--ease-standard), color var(--duration-2) var(--ease-standard);
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-fg); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: var(--surface-1); color: var(--fg-1); border-color: var(--border-2); }
+  .btn-secondary:hover { background: var(--surface-2); }
+  .btn-ghost { background: transparent; color: var(--fg-1); }
+  .btn-ghost:hover { background: var(--surface-2); }
+  .btn-danger { background: transparent; color: var(--loss); border-color: var(--border-2); }
+  .btn-danger:hover { background: var(--loss-soft); }
+  .btn-sm { height: 28px; padding: 0 10px; font-size: 13px; }
+  .btn-lg { height: 44px; padding: 0 18px; font-size: 15px; }
+</style>
+</head>
+<body>
+  <h3>Variants</h3>
+  <div class="row">
+    <button class="btn btn-primary">Adicionar transação</button>
+    <button class="btn btn-secondary">Cancelar</button>
+    <button class="btn btn-ghost">Ver detalhes</button>
+    <button class="btn btn-danger">Excluir</button>
+  </div>
+  <h3>Sizes</h3>
+  <div class="row">
+    <button class="btn btn-primary btn-sm">Salvar</button>
+    <button class="btn btn-primary">Salvar</button>
+    <button class="btn btn-primary btn-lg">Salvar</button>
+  </div>
+</body>
+</html>

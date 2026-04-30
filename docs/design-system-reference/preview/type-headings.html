@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type — Display & Headings</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg); color: var(--fg-1); }
+  .row { display: grid; grid-template-columns: 70px 1fr 90px; gap: 14px; align-items: baseline; padding: 10px 0; border-bottom: var(--hairline); }
+  .row:last-child { border-bottom: 0; }
+  .label { font: 600 10px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); }
+  .meta  { font: 400 11px/1.3 var(--font-mono); color: var(--fg-3); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="row"><div class="label">Display</div><div class="t-display">R$ 12.483,90</div><div class="meta">Serif 56 / 500</div></div>
+  <div class="row"><div class="label">H1</div><div class="t-h1">Visão geral</div><div class="meta">Serif 40 / 600</div></div>
+  <div class="row"><div class="label">H2</div><div class="t-h2">Reserva de emergência</div><div class="meta">Serif 28 / 600</div></div>
+  <div class="row"><div class="label">H3</div><div class="t-h3">Despesas recorrentes</div><div class="meta">Sans 20 / 600</div></div>
+  <div class="row"><div class="label">H4</div><div class="t-h4">Cartão Nubank — fatura</div><div class="meta">Sans 17 / 600</div></div>
+</body>
+</html>
