@@ -12,3 +12,4 @@ export * from "./Money/index.js";
 export * from "./Sparkline/index.js";
 export * from "./KPIStat/index.js";
 export * from "./Input/index.js";
+export * from "./Select/index.js";
