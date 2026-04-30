@@ -40,7 +40,7 @@ describe("ThemeProvider", () => {
         <span>x</span>
       </ThemeProvider>,
     );
-    expect(document.documentElement.dataset["theme"]).toBe("dark");
+    expect(document.documentElement.dataset.theme).toBe("dark");
   });
 
   it("applies stored override over system pref", () => {
@@ -52,7 +52,7 @@ describe("ThemeProvider", () => {
         <span>x</span>
       </ThemeProvider>,
     );
-    expect(document.documentElement.dataset["theme"]).toBe("light");
+    expect(document.documentElement.dataset.theme).toBe("light");
   });
 
   it("setTheme persists to localStorage and updates the dataset", () => {
@@ -67,7 +67,7 @@ describe("ThemeProvider", () => {
       result.current.setTheme("dark");
     });
 
-    expect(document.documentElement.dataset["theme"]).toBe("dark");
+    expect(document.documentElement.dataset.theme).toBe("dark");
     expect(localStorage.getItem(STORAGE_KEY)).toBe("dark");
     expect(result.current.theme).toBe("dark");
   });

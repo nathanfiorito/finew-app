@@ -7,7 +7,7 @@ import { useDensityStore } from "./providers/DensityProvider.js";
 
 const STORAGE_KEYS = ["finew:theme", "finew:density"];
 
-const COMBOS: Array<{ theme: "light" | "dark"; density: "comfortable" | "compact" }> = [
+const COMBOS: { theme: "light" | "dark"; density: "comfortable" | "compact" }[] = [
   { theme: "light", density: "comfortable" },
   { theme: "light", density: "compact" },
   { theme: "dark", density: "comfortable" },
@@ -15,7 +15,9 @@ const COMBOS: Array<{ theme: "light" | "dark"; density: "comfortable" | "compact
 ];
 
 beforeEach(() => {
-  STORAGE_KEYS.forEach((k) => localStorage.removeItem(k));
+  STORAGE_KEYS.forEach((k) => {
+    localStorage.removeItem(k);
+  });
   document.documentElement.removeAttribute("data-theme");
   document.documentElement.removeAttribute("data-density");
   useThemeStore.setState({ theme: "light", override: null });
@@ -23,7 +25,9 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  STORAGE_KEYS.forEach((k) => localStorage.removeItem(k));
+  STORAGE_KEYS.forEach((k) => {
+    localStorage.removeItem(k);
+  });
 });
 
 describe("App theme/density combinations", () => {
@@ -45,8 +49,8 @@ describe("App theme/density combinations", () => {
         console.error = restore;
       }
 
-      expect(document.documentElement.dataset["theme"]).toBe(theme);
-      expect(document.documentElement.dataset["density"]).toBe(density);
+      expect(document.documentElement.dataset.theme).toBe(theme);
+      expect(document.documentElement.dataset.density).toBe(density);
       expect(errors).toEqual([]);
     },
   );

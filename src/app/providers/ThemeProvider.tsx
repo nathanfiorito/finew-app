@@ -79,7 +79,7 @@ export function ThemeProvider({ children }: { children: ReactNode }): JSX.Elemen
   }, []);
 
   useEffect(() => {
-    document.documentElement.dataset["theme"] = theme;
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   useEffect(() => {

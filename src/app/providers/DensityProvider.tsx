@@ -51,7 +51,7 @@ export function DensityProvider({ children }: { children: ReactNode }): JSX.Elem
   }, []);
 
   useEffect(() => {
-    document.documentElement.dataset["density"] = density;
+    document.documentElement.dataset.density = density;
   }, [density]);
 
   return <>{children}</>;

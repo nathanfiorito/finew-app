@@ -23,7 +23,7 @@ describe("DensityProvider", () => {
         <span>x</span>
       </DensityProvider>,
     );
-    expect(document.documentElement.dataset["density"]).toBe("comfortable");
+    expect(document.documentElement.dataset.density).toBe("comfortable");
   });
 
   it("applies stored value", () => {
@@ -33,7 +33,7 @@ describe("DensityProvider", () => {
         <span>x</span>
       </DensityProvider>,
     );
-    expect(document.documentElement.dataset["density"]).toBe("compact");
+    expect(document.documentElement.dataset.density).toBe("compact");
   });
 
   it("setDensity persists and updates dataset", () => {
@@ -46,7 +46,7 @@ describe("DensityProvider", () => {
       result.current.setDensity("compact");
     });
 
-    expect(document.documentElement.dataset["density"]).toBe("compact");
+    expect(document.documentElement.dataset.density).toBe("compact");
     expect(localStorage.getItem(STORAGE_KEY)).toBe("compact");
     expect(result.current.density).toBe("compact");
   });

@@ -39,17 +39,19 @@ if (typeof window !== "undefined") {
   if (typeof window.matchMedia !== "function") {
     Object.defineProperty(window, "matchMedia", {
       configurable: true,
-      value: (query: string): MediaQueryList =>
-        ({
+      value: (query: string) => {
+        const noop = (): void => undefined;
+        return {
           matches: false,
           media: query,
           onchange: null,
-          addEventListener: () => {},
-          removeEventListener: () => {},
-          addListener: () => {},
-          removeListener: () => {},
+          addEventListener: noop,
+          removeEventListener: noop,
+          addListener: noop,
+          removeListener: noop,
           dispatchEvent: () => false,
-        }) as unknown as MediaQueryList,
+        };
+      },
     });
   }
 }
