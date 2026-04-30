@@ -1,0 +1,18 @@
+@layer components {
+  .fw-badge {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .fw-badge-neutral { background: var(--surface-2); color: var(--fg-2); }
+  .fw-badge-warn    { background: var(--warn-soft); color: var(--warn); }
+  .fw-badge-gain    { background: var(--gain-soft); color: var(--gain); }
+  .fw-badge-loss    { background: var(--loss-soft); color: var(--loss); }
+  .fw-badge-info    { background: var(--info-soft); color: var(--info); }
+}
