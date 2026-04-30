@@ -17,3 +17,4 @@ export * from "./Toast/index.js";
 export * from "./Tabs/index.js";
 export * from "./Accordion/index.js";
 export * from "./Tooltip/index.js";
+export * from "./Popover/index.js";
