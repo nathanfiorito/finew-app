@@ -35,6 +35,38 @@ CI (`.github/workflows/ci.yml`) runs `lint`, `typecheck`, `test`, `build` on eve
 
 When merging the `develop → main` PR, do **not** delete the branch (`develop` is long-lived).
 
+## Architecture (Feature-Sliced Design)
+
+The frontend is organized in six layers. Dependencies flow downward only — a layer may import from any layer **below** it, never sideways or upward.
+
+| Layer        | Purpose                              | May import from                                   |
+|--------------|--------------------------------------|---------------------------------------------------|
+| `app/`       | composition, router, providers       | pages, widgets, features, entities, shared       |
+| `pages/`     | routes; compose widgets/features     | widgets, features, entities, shared              |
+| `widgets/`   | composite reusable blocks            | features, entities, shared                        |
+| `features/`  | functional units (slices)            | entities, shared (NOT other features)             |
+| `entities/`  | domain models                        | shared                                            |
+| `shared/`    | generic building blocks (DS lives here) | shared only                                    |
+
+Each layer has its own `CLAUDE.md` describing its rules and conventions:
+
+- [`src/app/CLAUDE.md`](src/app/CLAUDE.md)
+- [`src/pages/CLAUDE.md`](src/pages/CLAUDE.md)
+- [`src/widgets/CLAUDE.md`](src/widgets/CLAUDE.md)
+- [`src/features/CLAUDE.md`](src/features/CLAUDE.md)
+- [`src/entities/CLAUDE.md`](src/entities/CLAUDE.md)
+- [`src/shared/CLAUDE.md`](src/shared/CLAUDE.md)
+  - [`src/shared/ui/CLAUDE.md`](src/shared/ui/CLAUDE.md) — Design-System surface
+  - [`src/shared/api/CLAUDE.md`](src/shared/api/CLAUDE.md)
+  - [`src/shared/lib/CLAUDE.md`](src/shared/lib/CLAUDE.md)
+  - [`src/shared/config/CLAUDE.md`](src/shared/config/CLAUDE.md)
+  - [`src/shared/types/CLAUDE.md`](src/shared/types/CLAUDE.md)
+
+Architectural boundaries are enforced by **two** layers (do not bypass either):
+
+1. **`eslint-plugin-boundaries`** in `eslint.config.js` — fast feedback in editor and `npm run lint`.
+2. **`dependency-cruiser`** run by `src/architecture.test.ts` (Vitest) — inviolable, no inline-disable.
+
 ## Repo configuration that the design depends on
 
 These are not in code but the design assumes them. Don't break them without updating `docs/superpowers/specs/2026-04-29-guardrails-design.md`:
