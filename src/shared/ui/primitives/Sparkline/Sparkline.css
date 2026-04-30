@@ -1,0 +1,6 @@
+@layer components {
+  .fw-sparkline {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
