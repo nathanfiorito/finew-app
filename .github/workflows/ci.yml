@@ -1,0 +1,92 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - develop
+      - "feature/**"
+  pull_request:
+    branches:
+      - develop
+      - main
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: "npm"
+      - run: npm ci
+      - run: npm test -- --run
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+
+  open-pr:
+    needs: [lint, typecheck, test, build]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/feature/'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - id: target
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/develop" ]]; then
+            echo "base=main" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=develop" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open PR if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          HEAD="${GITHUB_REF#refs/heads/}"
+          BASE="${{ steps.target.outputs.base }}"
+          EXISTING=$(gh pr list --head "$HEAD" --base "$BASE" --state open --json number --jq '.[0].number')
+          if [[ -n "$EXISTING" ]]; then
+            echo "PR #$EXISTING already exists for $HEAD -> $BASE"
+            exit 0
+          fi
+          TITLE="$(git log -1 --pretty=%s)"
+          gh pr create --base "$BASE" --head "$HEAD" \
+            --title "$TITLE" \
+            --body "Auto-PR from \`$HEAD\` after CI passed."
