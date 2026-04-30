@@ -5,3 +5,4 @@
 **Conventions:**
 
 - No conditional logic depending on the environment elsewhere — read the typed config from this folder.
+- Locale lives here (`locale/`) — it's user-selectable configuration with the same shape as env: read once on mount, persisted to localStorage, consumed everywhere via a hook.
