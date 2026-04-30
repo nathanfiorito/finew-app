@@ -1,0 +1,49 @@
+:root {
+  --finew-color-bg: #ffffff;
+  --finew-color-fg: #111111;
+  --finew-color-accent: #2563eb;
+
+  --finew-space-1: 0.25rem;
+  --finew-space-2: 0.5rem;
+  --finew-space-3: 0.75rem;
+  --finew-space-4: 1rem;
+  --finew-space-5: 1.5rem;
+  --finew-space-6: 2rem;
+
+  --finew-radius-sm: 0.25rem;
+  --finew-radius-md: 0.5rem;
+  --finew-radius-lg: 1rem;
+
+  --finew-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+  --finew-color-bg: #0b0b0c;
+  --finew-color-fg: #f5f5f5;
+  --finew-color-accent: #60a5fa;
+}
+
+/*
+ * Expose design tokens as Tailwind v4 theme tokens.
+ * Using --finew-* prefix on :root avoids name collisions with @theme vars.
+ * This enables utilities: bg-bg, text-fg, text-accent, etc.
+ * Dark mode: toggle [data-theme="dark"] on <html> or <body>.
+ */
+@theme {
+  --color-bg: var(--finew-color-bg);
+  --color-fg: var(--finew-color-fg);
+  --color-accent: var(--finew-color-accent);
+
+  --spacing-1: var(--finew-space-1);
+  --spacing-2: var(--finew-space-2);
+  --spacing-3: var(--finew-space-3);
+  --spacing-4: var(--finew-space-4);
+  --spacing-5: var(--finew-space-5);
+  --spacing-6: var(--finew-space-6);
+
+  --radius-sm: var(--finew-radius-sm);
+  --radius-md: var(--finew-radius-md);
+  --radius-lg: var(--finew-radius-lg);
+
+  --font-sans: var(--finew-font-sans);
+}

@@ -12,25 +12,26 @@
 
 ## File Structure
 
-| File | Purpose |
-|---|---|
-| `package.json` | Scripts (`lint`, `typecheck`, `test`, `build`) and devDeps |
-| `tsconfig.json` | Strict TS base used by `typecheck` |
-| `tsconfig.build.json` | Extends base, defines `outDir`, excludes tests |
-| `eslint.config.js` | Flat config with recommended JS + TS rules |
-| `.gitignore` | Ignore `node_modules`, `dist`, `coverage`, `.env*` |
-| `.nvmrc` | `24.15.0` to align local with CI |
-| `src/index.ts` | Smoke export so `tsc` has something to build |
-| `src/index.test.ts` | Smoke test so `vitest` finds at least one test |
-| `.github/workflows/ci.yml` | CI pipeline + auto-PR job |
-| `.github/rulesets/main.json` | Ruleset JSON applied to `main` |
-| `.github/rulesets/develop.json` | Ruleset JSON applied to `develop` |
+| File                            | Purpose                                                    |
+| ------------------------------- | ---------------------------------------------------------- |
+| `package.json`                  | Scripts (`lint`, `typecheck`, `test`, `build`) and devDeps |
+| `tsconfig.json`                 | Strict TS base used by `typecheck`                         |
+| `tsconfig.build.json`           | Extends base, defines `outDir`, excludes tests             |
+| `eslint.config.js`              | Flat config with recommended JS + TS rules                 |
+| `.gitignore`                    | Ignore `node_modules`, `dist`, `coverage`, `.env*`         |
+| `.nvmrc`                        | `24.15.0` to align local with CI                           |
+| `src/index.ts`                  | Smoke export so `tsc` has something to build               |
+| `src/index.test.ts`             | Smoke test so `vitest` finds at least one test             |
+| `.github/workflows/ci.yml`      | CI pipeline + auto-PR job                                  |
+| `.github/rulesets/main.json`    | Ruleset JSON applied to `main`                             |
+| `.github/rulesets/develop.json` | Ruleset JSON applied to `develop`                          |
 
 ---
 
 ## Task 1: Baseline TypeScript tooling
 
 **Files:**
+
 - Create: `package.json`
 - Create: `tsconfig.json`
 - Create: `tsconfig.build.json`
@@ -154,12 +155,14 @@ git commit -m "chore: scaffold typescript tooling baseline"
 ## Task 2: Smoke source + test
 
 **Files:**
+
 - Create: `src/index.ts`
 - Create: `src/index.test.ts`
 
 - [ ] **Step 1: Write the failing test**
 
 `src/index.test.ts`:
+
 ```ts
 import { expect, test } from "vitest";
 import { app } from "./index.js";
@@ -177,6 +180,7 @@ Expected: FAIL with "Cannot find module './index.js'" or equivalent.
 - [ ] **Step 3: Write minimal implementation**
 
 `src/index.ts`:
+
 ```ts
 export const app = "finew-app";
 ```
@@ -207,11 +211,13 @@ git commit -m "chore: add smoke source and test for ci pipeline"
 ## Task 3: CI workflow
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`
 
 - [ ] **Step 1: Write the workflow file**
 
 `.github/workflows/ci.yml`:
+
 ```yaml
 name: ci
 
@@ -319,6 +325,7 @@ git commit -m "ci: add lint/typecheck/test/build pipeline with auto-pr"
 ## Task 4: Ruleset JSONs
 
 **Files:**
+
 - Create: `.github/rulesets/main.json`
 - Create: `.github/rulesets/develop.json`
 
@@ -503,11 +510,13 @@ Expected: array of 2 rulesets, both `"enforcement": "active"`.
 - [ ] **Step 1: Confirm direct push to `main` is rejected**
 
 Run:
+
 ```bash
 git switch main
 git commit --allow-empty -m "chore: should-be-rejected"
 git push origin main
 ```
+
 Expected: push rejected with message containing "Changes must be made through a pull request" or "protected branch".
 
 - [ ] **Step 2: Reset local `main` to origin (clean up the rejected empty commit)**
@@ -518,11 +527,13 @@ Expected: `HEAD` is now at the last successful commit on `main`.
 - [ ] **Step 3: Confirm direct push to `develop` is rejected**
 
 Run:
+
 ```bash
 git switch develop
 git commit --allow-empty -m "chore: should-be-rejected"
 git push origin develop
 ```
+
 Expected: push rejected.
 
 - [ ] **Step 4: Reset local `develop` to origin**
@@ -532,11 +543,13 @@ Run: `git reset --hard origin/develop`
 - [ ] **Step 5: Create a feature branch and push**
 
 Run:
+
 ```bash
 git switch -c feature/test-guardrail
 git commit --allow-empty -m "chore: smoke test guardrail pipeline"
 git push -u origin feature/test-guardrail
 ```
+
 Expected: push succeeds.
 
 - [ ] **Step 6: Wait for CI to pass and auto-PR to be opened**
@@ -550,6 +563,7 @@ Expected: one open PR shown.
 - [ ] **Step 7: Re-push to confirm idempotency (no duplicate PR)**
 
 Run:
+
 ```bash
 git commit --allow-empty -m "chore: second commit on smoke branch"
 git push
@@ -588,10 +602,12 @@ Expected: merge succeeds; `main` advances by 1 squash commit.
 - [ ] **Step 12: Sync local branches**
 
 Run:
+
 ```bash
 git switch main && git pull
 git switch develop && git pull
 ```
+
 Expected: both branches up to date with origin.
 
 - [ ] **Step 13: Verify acceptance criteria checklist**
