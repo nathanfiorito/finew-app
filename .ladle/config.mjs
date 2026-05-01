@@ -1,6 +1,6 @@
 export default {
   stories: "src/**/*.stories.{ts,tsx}",
-  defaultStory: "primitives-icon--default",
+  defaultStory: "icon--default",
   addons: {
     theme: { enabled: false },
     width: { enabled: false },
