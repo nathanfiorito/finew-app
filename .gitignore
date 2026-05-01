@@ -145,3 +145,10 @@ vite.config.ts.timestamp-*
 # Claude Design source archive — the extracted output is committed under
 # docs/design-system-reference/ instead.
 Finew v2.0.zip
+
+# Ladle
+.ladle/dist/
+build/
+
+# Playwright MCP traces
+.playwright-mcp/
