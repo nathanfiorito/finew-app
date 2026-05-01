@@ -63,7 +63,7 @@ const Trigger = forwardRef<HTMLButtonElement, TriggerProps>(function TriggerImpl
 Trigger.displayName = "Accordion.Trigger";
 
 const Content = forwardRef<HTMLDivElement, ContentProps>(function ContentImpl(
-  { className, ...rest }: ContentProps,
+  { className, children, ...rest }: ContentProps,
   ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element {
   return (
@@ -71,7 +71,9 @@ const Content = forwardRef<HTMLDivElement, ContentProps>(function ContentImpl(
       ref={ref}
       className={joinClasses("fw-accordion-content", className)}
       {...rest}
-    />
+    >
+      <div className="fw-accordion-content-inner">{children}</div>
+    </AccordionPrimitive.Content>
   );
 });
 Content.displayName = "Accordion.Content";
