@@ -28,7 +28,7 @@ function BottomSheetImpl(
     <Drawer.Root
       open={open}
       onOpenChange={onOpenChange}
-      snapPoints={snapPoints ?? [0.5, 0.9, 1]}
+      snapPoints={snapPoints}
     >
       <Drawer.Portal>
         <Drawer.Overlay className="fw-sheet-overlay" />
